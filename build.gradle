@@ -32,6 +32,7 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
     compile "org.jetbrains.ktor:ktor-core:$ktorVersion"
     compile "org.jetbrains.ktor:ktor-jetty:$ktorVersion"
+    compile "org.jetbrains.ktor:ktor-freemarker:$ktorVersion"
     compile 'com.squareup.okhttp3:okhttp:3.8.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.8.0'
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
