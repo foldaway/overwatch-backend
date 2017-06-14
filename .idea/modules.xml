@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/overwatch-dashboard.iml" filepath="$PROJECT_DIR$/.idea/modules/overwatch-dashboard.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/overwatch-dashboard_main.iml" filepath="$PROJECT_DIR$/.idea/modules/overwatch-dashboard_main.iml" group="overwatchdashboard" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/overwatch-dashboard_test.iml" filepath="$PROJECT_DIR$/.idea/modules/overwatch-dashboard_test.iml" group="overwatchdashboard" />
+    </modules>
+  </component>
+</project>
