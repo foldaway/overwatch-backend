@@ -16,8 +16,8 @@ interface OWAPIService {
     fun getUserStats(@Path("battletag") battleTag: String): Single<UserStatsResponse>
 
     @GET("u/{battletag}/achievements")
-    fun getUserAchievements(@Path("battletag") battleTag: String): Single<UserHeroesResponse>
+    fun getUserAchievements(@Path("battletag") battleTag: String): Single<String>
 
     @GET("u/{battletag}/heroes")
-    fun getUserHeroes(@Path("battletag") battleTag: String): Single<String>
+    fun getUserHeroes(@Path("battletag") battleTag: String): Single<UserHeroesResponse>
 }

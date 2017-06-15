@@ -1,7 +1,9 @@
 package me.duncanleo.overwatchdashboard
 
 import com.squareup.moshi.Moshi
+import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
+import me.duncanleo.overwatchdashboard.model.Player
 import me.duncanleo.overwatchdashboard.network.Network
 import me.duncanleo.overwatchdashboard.network.model.UserStatsResponse
 import me.duncanleo.overwatchdashboard.web.StartServer
@@ -13,7 +15,7 @@ import kotlin.concurrent.timer
  * Created by duncanleo on 14/6/17.
  */
 
-val data = mutableMapOf<String, UserStatsResponse>()
+val data = mutableMapOf<String, Player>()
 
 fun main(args: Array<String>) {
     // Periodically get updated data
@@ -25,16 +27,26 @@ fun main(args: Array<String>) {
     }
 
     timer(name = "data-fetcher", initialDelay = 0, period = TimeUnit.HOURS.toMillis(1)) {
-        for (tag in tags) {
-            Network.owAPIService.getUserStats(tag)
-                    .observeOn(Schedulers.newThread())
-                    .subscribe({ response ->
-                        data[tag] = response
-                    }, { error ->
-                        data.remove(tag)
-                        error.printStackTrace()
-                    })
-        }
+        Observable.fromArray(*tags)
+                .delay(2, TimeUnit.SECONDS)
+                .observeOn(Schedulers.newThread())
+                .flatMap({
+                    Network.owAPIService.getUserStats(it)
+                            .toObservable()
+                }, { tag, statsRes ->
+                    Pair(tag, statsRes)
+                })
+                .flatMap({
+                    Network.owAPIService.getUserHeroes(it.first).toObservable()
+                }, { (first, second), heroesRes ->
+                    Player(first, second, heroesRes)
+                })
+                .subscribe({ player ->
+                    data[player.battleTag] = player
+                }, { error ->
+//                    data.remove( /)
+                    error.printStackTrace()
+                })
     }
 
     StartServer()

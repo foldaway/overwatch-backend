@@ -12,8 +12,8 @@ data class UserHeroesResponse (
         val any: Any?
 ) {
     data class Region(
-            val playtime: Playtime,
-            val stats: Stats
+            val playtime: Playtime?,
+            val stats: Stats?
     ) {
         data class Playtime(
                 val competitive: Map<String, Double>?,

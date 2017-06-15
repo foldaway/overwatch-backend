@@ -7,11 +7,12 @@
     </head>
     <body>
         <ul>
-            <#list keys as battleTag>
+            <#list battleTags as battleTag>
                 <li>
                     <h1>${battleTag}</h1>
-                    <img src="${data[battleTag]["avatar"]}" alt="" class="avatar">
-                    <p>Season SR: ${data[battleTag]["sr"]}</p>
+                    <img src="${data[battleTag].avatar!""}" alt="" class="avatar">
+                    <p>Season SR: ${data[battleTag].seasonRating!"NA"}</p>
+
                 </li>
             </#list>
         </ul>

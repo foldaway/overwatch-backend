@@ -30,12 +30,9 @@ fun StartServer() {
 
         routing {
             get("/") {
-                val templateData = mapOf(
-                        "keys" to data.keys,
-                        "data" to data.mapValues { mapOf(
-                                "avatar" to (it.value.usa?.stats?.competitive?.overallStats?.get("avatar") ?: ""),
-                                "sr" to (it.value.usa?.stats?.competitive?.overallStats?.get("comprank") ?: "NA")
-                        ) }
+                val templateData = mutableMapOf(
+                        "battleTags" to data.keys,
+                        "data" to data
                 )
                 call.respond(FreeMarkerContent("index.ftl", templateData, etag = ""))
             }
