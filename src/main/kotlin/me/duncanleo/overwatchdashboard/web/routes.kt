@@ -30,6 +30,7 @@ fun StartServer() {
                 val templateData = mapOf(
                         "keys" to data.keys,
                         "data" to data.mapValues { mapOf(
+                                "avatar" to (it.value.usa?.stats?.competitive?.overallStats?.get("avatar") ?: ""),
                                 "sr" to (it.value.usa?.stats?.competitive?.overallStats?.get("comprank") ?: "NA")
                         ) }
                 )
