@@ -18,3 +18,8 @@ ul {
     flex-wrap: wrap;
     list-style-type: none;
 }
+
+img.hero {
+    width: auto;
+    height: 6em;
+}

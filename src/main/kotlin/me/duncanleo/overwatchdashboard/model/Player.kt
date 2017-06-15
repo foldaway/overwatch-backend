@@ -28,4 +28,22 @@ data class Player(
                 stats.usa?.stats?.competitive?.overallStats?.get("avatar") as String?
                 )
     }
+
+    val mainQP: String?
+    get() {
+        return (
+                heroes.korea?.heroes?.playtime?.quickplay?.asIterable()?.sortedByDescending { it.value }?.first()?.key ?:
+                heroes.europe?.heroes?.playtime?.quickplay?.asIterable()?.sortedByDescending { it.value }?.first()?.key ?:
+                heroes.usa?.heroes?.playtime?.quickplay?.asIterable()?.sortedByDescending { it.value }?.first()?.key
+                )
+    }
+
+    val mainComp: String?
+    get() {
+        return (
+                heroes.korea?.heroes?.playtime?.competitive?.asIterable()?.sortedByDescending { it.value }?.first()?.key ?:
+                heroes.europe?.heroes?.playtime?.competitive?.asIterable()?.sortedByDescending { it.value }?.first()?.key ?:
+                heroes.usa?.heroes?.playtime?.competitive?.asIterable()?.sortedByDescending { it.value }?.first()?.key
+                )
+    }
 }

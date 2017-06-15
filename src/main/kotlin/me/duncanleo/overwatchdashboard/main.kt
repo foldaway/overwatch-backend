@@ -28,7 +28,7 @@ fun main(args: Array<String>) {
 
     timer(name = "data-fetcher", initialDelay = 0, period = TimeUnit.HOURS.toMillis(1)) {
         Observable.fromArray(*tags)
-                .delay(2, TimeUnit.SECONDS)
+                .delay(4, TimeUnit.SECONDS)
                 .observeOn(Schedulers.newThread())
                 .flatMap({
                     Network.owAPIService.getUserStats(it)
@@ -41,6 +41,7 @@ fun main(args: Array<String>) {
                 }, { (first, second), heroesRes ->
                     Player(first, second, heroesRes)
                 })
+                .onExceptionResumeNext {  }
                 .subscribe({ player ->
                     data[player.battleTag] = player
                 }, { error ->
