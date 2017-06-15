@@ -4,6 +4,9 @@ import freemarker.cache.StringTemplateLoader
 import me.duncanleo.overwatchdashboard.data
 import org.jetbrains.ktor.application.call
 import org.jetbrains.ktor.application.install
+import org.jetbrains.ktor.content.files
+import org.jetbrains.ktor.content.static
+import org.jetbrains.ktor.content.staticRootFolder
 import org.jetbrains.ktor.freemarker.FreeMarker
 import org.jetbrains.ktor.freemarker.FreeMarkerContent
 import org.jetbrains.ktor.host.embeddedServer
@@ -35,6 +38,10 @@ fun StartServer() {
                         ) }
                 )
                 call.respond(FreeMarkerContent("index.ftl", templateData, etag = ""))
+            }
+
+            static(remotePath = "/static") {
+                files(File("static"))
             }
         }
     }.start(wait = true)
