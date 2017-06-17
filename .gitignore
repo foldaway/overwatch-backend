@@ -47,3 +47,5 @@ crashlytics.properties
 crashlytics-build.properties
 
 build/
+
+.gradle
