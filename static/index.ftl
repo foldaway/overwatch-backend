@@ -13,13 +13,13 @@
         <ul>
         <#list battleTags as battleTag>
             <li>
-                <div class="content">
-                    <img src="${data[battleTag].avatar!""}" alt="" class="avatar">
-                    <div class="hero-wrapper">
-                        <img src="https://blzgdapipro-a.akamaihd.net/hero/${data[battleTag].mainComp!"genji"}/hero-select-portrait.png" alt="" class="hero">
+                <div class="card">
+                    <img src="https://blzgdapipro-a.akamaihd.net/hero/${data[battleTag].mainComp!"genji"}/hero-select-portrait.png" alt="" class="hero">
+                    <div class="mask">
+                        <img src="${data[battleTag].avatar!""}" alt="" class="avatar">
+                        <h1>${battleTag}</h1>
+                        <p>Season SR: ${data[battleTag].seasonRating!"NA"}</p>
                     </div>
-                    <h1>${battleTag}</h1>
-                    <p>Season SR: ${data[battleTag].seasonRating!"NA"}</p>
                 </div>
             </li>
         </#list>
