@@ -6,12 +6,11 @@ import org.jetbrains.ktor.application.call
 import org.jetbrains.ktor.application.install
 import org.jetbrains.ktor.content.files
 import org.jetbrains.ktor.content.static
-import org.jetbrains.ktor.content.staticRootFolder
 import org.jetbrains.ktor.freemarker.FreeMarker
 import org.jetbrains.ktor.freemarker.FreeMarkerContent
 import org.jetbrains.ktor.host.embeddedServer
 import org.jetbrains.ktor.jetty.Jetty
-import org.jetbrains.ktor.response.respondText
+import org.jetbrains.ktor.logging.CallLogging
 import org.jetbrains.ktor.routing.get
 import org.jetbrains.ktor.routing.routing
 import java.io.File
@@ -22,6 +21,8 @@ import java.io.File
 
 fun StartServer() {
     embeddedServer(Jetty, 8080) {
+        install(CallLogging)
+
         install(FreeMarker) {
             templateLoader = StringTemplateLoader().apply {
                 putTemplate("index.ftl", File("static/index.ftl").readText())

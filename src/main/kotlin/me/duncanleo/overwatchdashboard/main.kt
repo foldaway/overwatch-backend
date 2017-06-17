@@ -5,7 +5,6 @@ import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import me.duncanleo.overwatchdashboard.model.Player
 import me.duncanleo.overwatchdashboard.network.Network
-import me.duncanleo.overwatchdashboard.network.model.UserStatsResponse
 import me.duncanleo.overwatchdashboard.web.StartServer
 import java.io.File
 import java.util.concurrent.TimeUnit

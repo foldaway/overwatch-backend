@@ -28,6 +28,15 @@ sourceSets {
     main.java.srcDirs += 'src/main/kotlin'
 }
 
+jar {
+    manifest {
+        attributes 'Main-Class': 'me.duncanleo.overwatchdashboard.MainKt'
+    }
+
+    // NEW LINE HERE !!!
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+}
+
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
     compile "org.jetbrains.ktor:ktor-core:$ktorVersion"
