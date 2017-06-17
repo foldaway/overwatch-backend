@@ -1,4 +1,3 @@
-package me.duncanleo.overwatchdashboard
 
 import com.squareup.moshi.Moshi
 import io.reactivex.Observable
