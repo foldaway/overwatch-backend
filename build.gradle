@@ -39,6 +39,8 @@ jar {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+    compile "com.sparkjava:spark-core:2.6.0"
+    compile "com.sparkjava:spark-template-freemarker:2.5.5"
     compile "org.jetbrains.ktor:ktor-core:$ktorVersion"
     compile "org.jetbrains.ktor:ktor-jetty:$ktorVersion"
     compile "org.jetbrains.ktor:ktor-freemarker:$ktorVersion"

@@ -3,7 +3,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Overwatch Dashboard</title>
-        <link rel="stylesheet" href="static/index.css">
+        <link rel="stylesheet" href="index.css">
     </head>
     <body>
         <ul>

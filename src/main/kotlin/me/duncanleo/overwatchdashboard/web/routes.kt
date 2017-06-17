@@ -1,6 +1,7 @@
 package me.duncanleo.overwatchdashboard.web
 
 import freemarker.cache.StringTemplateLoader
+import freemarker.template.Configuration
 import me.duncanleo.overwatchdashboard.data
 import org.jetbrains.ktor.application.call
 import org.jetbrains.ktor.application.install
@@ -13,6 +14,9 @@ import org.jetbrains.ktor.jetty.Jetty
 import org.jetbrains.ktor.logging.CallLogging
 import org.jetbrains.ktor.routing.get
 import org.jetbrains.ktor.routing.routing
+import spark.ModelAndView
+import spark.Service.ignite
+import spark.template.freemarker.FreeMarkerEngine
 import java.io.File
 
 /**
@@ -20,27 +24,41 @@ import java.io.File
  */
 
 fun StartServer() {
-    embeddedServer(Jetty, 8080) {
-        install(CallLogging)
-
-        install(FreeMarker) {
-            templateLoader = StringTemplateLoader().apply {
-                putTemplate("index.ftl", File("static/index.ftl").readText())
-            }
-        }
-
-        routing {
-            get("/") {
-                val templateData = mutableMapOf(
-                        "battleTags" to data.keys,
-                        "data" to data
-                )
-                call.respond(FreeMarkerContent("index.ftl", templateData, etag = ""))
-            }
-
-            static(remotePath = "/static") {
-                files(File("static"))
-            }
-        }
-    }.start(wait = true)
+    val http = ignite()
+    http.port(8080)
+    http.staticFiles.externalLocation("static")
+    http.get("/") { _, _ ->
+        val templateData = mutableMapOf(
+            "battleTags" to data.keys,
+            "data" to data
+        )
+        val config = Configuration()
+        config.setDirectoryForTemplateLoading(File("static"))
+        FreeMarkerEngine(config).render(
+                ModelAndView(templateData, "index.ftl")
+        )
+    }
+//    embeddedServer(Jetty, 8080) {
+//        install(CallLogging)
+//
+//        install(FreeMarker) {
+//            templateLoader = StringTemplateLoader().apply {
+//                putTemplate("index.ftl", File("static/index.ftl").readText())
+//            }
+//        }
+//
+//        routing {
+//            get("/") {
+//                val templateData = mutableMapOf(
+//                        "battleTags" to data.keys,
+//                        "data" to data
+//                )
+//                call.respond(FreeMarkerContent("index.ftl", templateData, etag = ""))
+//            }
+//
+//            static(remotePath = "/static") {
+//                files(File("static"))
+//            }
+//        }
+//    }.start(wait = true)
 }
