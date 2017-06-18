@@ -19,7 +19,7 @@
                         <img src="https://blzgdapipro-a.akamaihd.net/hero/${data[battleTag].mainComp!"genji"}/hero-select-portrait.png" alt=""/>
                     </div>
                     <div class="bottom-panel">
-                        <img src="${data[battleTag].avatar!""}" alt="" class="player-icon">
+                        <img src="${data[battleTag].avatar!"https://vignette4.wikia.nocookie.net/overwatch/images/5/53/Pi_defaultblack.png"}" alt="" class="player-icon">
                         <div class="details">
                             <span class="battleTag">${data[battleTag].battleTagName}</span>
                             <span>SR: ${data[battleTag].seasonRating!"NA"}</span>
