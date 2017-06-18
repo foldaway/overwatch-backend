@@ -21,7 +21,7 @@
                     <div class="bottom-panel">
                         <img src="${data[battleTag].avatar!""}" alt="" class="player-icon">
                         <div class="details">
-                            <span class="battleTag">${battleTag}</span>
+                            <span class="battleTag">${data[battleTag].battleTagName}</span>
                             <span>SR: ${data[battleTag].seasonRating!"NA"}</span>
                         </div>
                     </div>

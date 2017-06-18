@@ -11,6 +11,12 @@ data class Player(
         val stats: UserStatsResponse,
         val heroes: UserHeroesResponse
 ) {
+    val battleTagName: String
+    get() = battleTag.split('-')[0]
+
+    val battleTagNumber: String
+        get() = battleTag.split('-')[1]
+
     val seasonRating: Double?
     get() {
         return (
