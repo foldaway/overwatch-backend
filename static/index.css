@@ -20,12 +20,14 @@ ul {
 }
 
 li {
-    margin: 0;
+    margin: 1em;
     padding: 1.5em;
+    align-items: center;
+    justify-content: center;
 }
 
 li:last-child {
-    margin: 0;
+    margin: 1em;
 }
 
 .card {
@@ -39,10 +41,29 @@ li:last-child {
     background: linear-gradient(#FFA944, #b4c6bc);
     overflow: hidden;
 
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+.card:hover{
+    width: 18em;
+    height: 26em;
+}
+
+.card:hover .player-icon{
+    width: 6em;
+    height: 6em;
+}
+
+.card:hover .details{
+    transition: all 0.2s ease-in;
+    -webkit-transition: all 0.2s ease-in;
+    font-size: 24px;
 }
 
 .hero {
@@ -94,11 +115,17 @@ li:last-child {
     width: 4em;
     height: 4em;
     margin-right: 0.7em;
+
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
 }
 
 .bottom-panel > .details {
     display: flex;
     flex-direction: column;
+
+    transition: all 0.3s ease-out;
+    -webkit-transition: all 0.3s ease-out;
 }
 
 .bottom-panel > .details > span {
