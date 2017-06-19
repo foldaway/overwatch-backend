@@ -64,7 +64,7 @@ class PlayerTest : ShouldSpec() {
         }
 
         should("player main in competitive should be reflected") {
-            player.mainComp shouldBe "ana"
+            player.mainComp shouldBe "mercy"
         }
     }
 }
