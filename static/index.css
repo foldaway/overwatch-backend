@@ -30,6 +30,10 @@ li:last-child {
     margin: 1em;
 }
 
+ul.content-card{
+    justify-content: center;
+}
+
 .card {
     position: relative;
     display: flex;
