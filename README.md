@@ -1,4 +1,6 @@
 # Overwatch Dashboard
+[![Build Status](https://travis-ci.com/duncanleo/overwatch-dashboard.svg?token=K55cj8GL5QGanosi8wGd&branch=master)](https://travis-ci.com/duncanleo/overwatch-dashboard)
+
 Web app that displays competitive statistics for a selection of Overwatch players.
 
 ## Running
