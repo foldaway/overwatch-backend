@@ -15,4 +15,4 @@ deploy:
   app:
     master: overwatch-dashboard-kt
     add-deployment: overwatch-dashboard-kt
-  on: add-deployment
+  on: master
