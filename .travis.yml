@@ -1,12 +1,18 @@
 language: java
-
 jdk:
-  - oraclejdk8
-
+- oraclejdk8
 before_cache:
-  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 cache:
   directories:
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
+  - "$HOME/.gradle/caches/"
+  - "$HOME/.gradle/wrapper/"
+deploy:
+  provider: heroku
+  api_key:
+    secure: vRurORRdT3kazLBlR7IViPMOGILJMsgiOE1f5OHno+uL3Dl16YK2aWqLFQReqfXJLmdb9mEJGJxaaNTG3+CbNja+pxSHTYcMAhspK3N9b4F/PPSMHcwWIJq9dLv/mzT6f9Pi/eAlj1ssecuAl7lWsvCyDnQooqFNAzA0cYtqkVqPNfmS5bL1yhb8BFkP7EH9zoYLzzzdWr6iAPTeCpTgI0BY8Og+QT5s8KfC+kpwl5I1t4PItQd+/Igz3t/q1cen75hK4tv68vnHsTWd6xypVYfGP0/gwzC65b/RajclTIEE52+QXPQ4FyrAmlCH8x2Kjf6MvpgiImaNbtkSGkFr/wraYGomYuR3fuB51upPmKKPxMji2GoCS/VbDaFmtqnDeoo5k/Vsku+EO2qTG8LG98Zz7CZ+JO98SkrhLXYli7MXziyL0ZU2HWAzdbD8AXy4PmsbsljB/AIy+l4+p7M2HM3azDXpAoCA7C1G1nRhB6yPZE3QZCvblITuDYZy/pOw8/ImmBb0EvrT0VhZIas16rPUosgQJUrsZhW6gWGFqe92NfeTmfhzNs8+GJJahMX9t1vkTACHfxVy5yQJQs63p4CPxjcZDzalo3aVc/Q5HVbQNh+PQa2lmaoLKRZ5od5RLBEszoOV9UH9SwbBuPJGAXJAxAfMwAfcVV8XptbBh8k=
+  app:
+    master: overwatch-dashboard-kt
+    add-deployment: overwatch-dashboard-kt
+  on: add-deployment
