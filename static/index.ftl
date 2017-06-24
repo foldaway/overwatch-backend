@@ -6,15 +6,28 @@
         <link rel="stylesheet" href="index.css">
     </head>
     <body>
+        <div class="header">
+            <h1>Overwatch</h1>
+            <h1 class="orange">Dashboard</h1>
+        </div>
         <ul>
-            <#list battleTags as battleTag>
-                <li>
-                    <h1>${battleTag}</h1>
-                    <img src="${data[battleTag].avatar!""}" alt="" class="avatar">
-                    <img src="https://blzgdapipro-a.akamaihd.net/hero/${data[battleTag].mainComp!"genji"}/career-portrait.png" alt="" class="hero">
-                    <p>Season SR: ${data[battleTag].seasonRating!"NA"}</p>
-                </li>
-            </#list>
+        <#list battleTags as battleTag>
+            <li>
+                <div class="card">
+                    <div class="mask"></div>
+                    <div class="hero">
+                        <img src="https://blzgdapipro-a.akamaihd.net/hero/${data[battleTag].mainComp!"genji"}/hero-select-portrait.png" alt=""/>
+                    </div>
+                    <div class="bottom-panel">
+                        <img src="${data[battleTag].avatar!"https://vignette4.wikia.nocookie.net/overwatch/images/5/53/Pi_defaultblack.png"}" alt="" class="player-icon">
+                        <div class="details">
+                            <span class="battleTag">${data[battleTag].battleTagName}</span>
+                            <span>SR: ${data[battleTag].seasonRating!"NA"}</span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </#list>
         </ul>
     </body>
 </html>
