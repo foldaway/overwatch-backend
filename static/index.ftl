@@ -10,7 +10,7 @@
             <h1>Overwatch</h1>
             <h1 class="orange">Dashboard</h1>
         </div>
-        <ul>
+        <ul class = "content-card">
         <#list battleTags as battleTag>
             <li>
                 <div class="card">
