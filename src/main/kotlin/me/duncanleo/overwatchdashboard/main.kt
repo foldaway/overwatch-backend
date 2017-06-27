@@ -6,6 +6,7 @@ import io.reactivex.schedulers.Schedulers
 import me.duncanleo.overwatchdashboard.model.Player
 import me.duncanleo.overwatchdashboard.network.Network
 import me.duncanleo.overwatchdashboard.web.StartServer
+import org.slf4j.event.Level
 import java.io.File
 import java.util.concurrent.TimeUnit
 import kotlin.concurrent.timer
@@ -26,22 +27,32 @@ fun main(args: Array<String>) {
     }
 
     timer(name = "data-fetcher", initialDelay = 0, period = TimeUnit.HOURS.toMillis(1)) {
+        println("[TIMER] Fetching all data")
         Observable.fromArray(*tags)
                 .delay(4, TimeUnit.SECONDS)
                 .observeOn(Schedulers.newThread())
+                .doOnNext {
+                    println("[TIMER] Fetching stats for '$it'")
+                }
                 .flatMap({
                     Network.owAPIService.getUserStats(it)
                             .toObservable()
                 }, { tag, statsRes ->
                     Pair(tag, statsRes)
                 })
+                .doOnNext {
+                    println("[TIMER] Fetching heroes for '${it.first}'")
+                }
                 .flatMap({
                     Network.owAPIService.getUserHeroes(it.first).toObservable()
                 }, { (first, second), heroesRes ->
                     Player(first, second, heroesRes)
                 })
-                .onExceptionResumeNext {  }
+                .retryWhen {
+                    it.doOnNext { println("[TIMER] Retry.") }.delay(5, TimeUnit.SECONDS)
+                }
                 .subscribe({ player ->
+                    println("[TIMER] Completed fetching for '${player.battleTag}'")
                     data[player.battleTag] = player
                 }, { error ->
 //                    data.remove( /)

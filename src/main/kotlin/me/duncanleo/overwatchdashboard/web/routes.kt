@@ -13,7 +13,7 @@ import java.io.File
 
 fun StartServer() {
     val http = ignite()
-    http.port(System.getenv("PORT").toIntOrNull() ?: 8080)
+    http.port(System.getenv("PORT")?.toIntOrNull() ?: 8080)
     http.staticFiles.externalLocation("static")
     http.get("/") { _, _ ->
         val templateData = mutableMapOf(
