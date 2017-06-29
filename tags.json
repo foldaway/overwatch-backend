@@ -1,13 +1,57 @@
 [
-  "alphatrl-11833",
-  "Autumn-12668",
-  "Elchemyyy-1604",
-  "ExplosiveCow-1792",
-  "FrostyFeet-11226",
-  "JxJoker-1331",
-  "nkdonut-1804",
-  "OopsyDanger-1830",
-  "Dad-12262",
-  "Wraxu-1747",
-  "MemeInhaler-2645"
+  {
+    "tag": "alphatrl-11833",
+    "platform": "pc",
+    "region": "us"
+  },
+  {
+    "tag": "Autumn-12668",
+    "platform": "pc",
+    "region": "us"
+  },
+  {
+    "tag": "Elchemyyy-1604",
+    "platform": "pc",
+    "region": "us"
+  },
+  {
+    "tag": "ExplosiveCow-1792",
+    "platform": "pc",
+    "region": "us"
+  },
+  {
+    "tag": "FrostyFeet-11226",
+    "platform": "pc",
+    "region": "us"
+  },
+  {
+    "tag": "JxJoker-1331",
+    "platform": "pc",
+    "region": "us"
+  },
+  {
+    "tag": "nkdonut-1804",
+    "platform": "pc",
+    "region": "us"
+  },
+  {
+    "tag": "OopsyDanger-1830",
+    "platform": "pc",
+    "region": "us"
+  },
+  {
+    "tag": "Dad-12262",
+    "platform": "pc",
+    "region": "us"
+  },
+  {
+    "tag": "Wraxu-1747",
+    "platform": "pc",
+    "region": "us"
+  },
+  {
+    "tag": "MemeInhaler-2645",
+    "platform": "pc",
+    "region": "us"
+  }
 ]
