@@ -4,9 +4,8 @@ import io.kotlintest.KTestJUnitRunner
 import io.kotlintest.matchers.shouldBe
 import io.kotlintest.specs.ShouldSpec
 import me.duncanleo.overwatchdashboard.model.Player
-import me.duncanleo.overwatchdashboard.network.model.UserHeroesResponse
-import me.duncanleo.overwatchdashboard.network.model.UserStat
-import me.duncanleo.overwatchdashboard.network.model.UserStatsResponse
+import me.duncanleo.overwatchdashboard.network.model.PlayerProfileResponse
+import me.duncanleo.overwatchdashboard.network.model.PlayerStatsResponse
 import org.junit.runner.RunWith
 
 /**
@@ -16,43 +15,62 @@ import org.junit.runner.RunWith
 @RunWith(KTestJUnitRunner::class)
 class PlayerTest : ShouldSpec() {
     init {
+        val genericGMC = PlayerStatsResponse.Stats.GameModesContainer(
+                quickplay = listOf(),
+                competitive = listOf()
+        )
+
         val player = Player(
                 "someone-12345",
-                stats = UserStatsResponse(
-                        korea = null,
-                        europe = null,
-                        usa = UserStatsResponse.Region(
-                                UserStatsResponse.Region.Stats(
-                                        competitive = UserStat(overallStats = mapOf(
-                                                "comprank" to 1234.0,
-                                                "avatar" to "https://example.com/avatar.jpg"
-                                        ), averageStats = mapOf(), competitive = true, gameStats = mapOf()),
-                                        quickplay = null
-                                )
-                        ),
-                        any = null
+                platform = "pc",
+                region = "us",
+                stats = PlayerStatsResponse(
+                        username = "someone",
+                        portrait = "https://example.com/avatar.jpg",
+                        level = 99,
+                        stats = PlayerStatsResponse.Stats(
+                                topHeroes = PlayerStatsResponse.Stats.GameModesContainerTH(
+                                        quickplay = listOf(PlayerStatsResponse.Stats.Hero("junkrat", "22 hours", "https://example.com/junkrat.png")),
+                                        competitive = listOf(PlayerStatsResponse.Stats.Hero("ana", "22 hours", "https://example.com/ana.png"))
+                                ),
+                                matchAwards = genericGMC,
+                                combat = genericGMC,
+                                deaths = genericGMC,
+                                assists = genericGMC,
+                                average = genericGMC,
+                                misc = genericGMC,
+                                best = genericGMC,
+                                game = genericGMC
+                        )
                 ),
-                heroes = UserHeroesResponse(
-                        korea = null,
-                        europe = null,
-                        usa = UserHeroesResponse.Region(
-                                UserHeroesResponse.Region.HeroesContainer(
-                                        playtime = UserHeroesResponse.Region.HeroesContainer.Playtime(
-                                                competitive = mapOf("ana" to 1.0, "mercy" to 0.1),
-                                                quickplay = mapOf("junkrat" to 1.0, "lucio" to 0.3)
-                                        ),
-                                        stats = UserHeroesResponse.Region.HeroesContainer.Stats(
-                                                competitive = mapOf(),
-                                                quickplay = mapOf()
-                                        )
+                profile = PlayerProfileResponse(
+                        username = "someone",
+                        level = 99,
+                        portrait = "https://example.com/avatar.jpg",
+                        playtime = PlayerProfileResponse.PlayTimes(
+                                quickplay = "100 hours",
+                                competitive = "100 hours"
+                        ),
+                        games = PlayerProfileResponse.GameModes(
+                                quickplay = null,
+                                competitive = PlayerProfileResponse.GameMode(
+                                        won = 10,
+                                        lost = 0,
+                                        draw = 0,
+                                        played = 10
                                 )
                         ),
-                        any = null
+                        competitive = PlayerProfileResponse.CompData(
+                                rank = 1234,
+                                rankImg = ""
+                        ),
+                        levelFrame = "",
+                        star = ""
                 )
         )
 
         should("player season rating should return competitive SR") {
-            player.seasonRating shouldBe 1234.0
+            player.seasonRating shouldBe 1234
         }
 
         should("player avatar should be reflected") {
