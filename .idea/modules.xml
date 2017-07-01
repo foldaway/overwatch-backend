@@ -3,10 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/overwatchdashboard.iml" filepath="$PROJECT_DIR$/.idea/modules/overwatchdashboard.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/overwatchdashboard.iml" filepath="$PROJECT_DIR$/.idea/modules/overwatchdashboard.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/overwatchdashboard_main.iml" filepath="$PROJECT_DIR$/.idea/modules/overwatchdashboard_main.iml" group="overwatchdashboard" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/overwatchdashboard_main.iml" filepath="$PROJECT_DIR$/.idea/modules/overwatchdashboard_main.iml" group="overwatchdashboard" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/overwatchdashboard_test.iml" filepath="$PROJECT_DIR$/.idea/modules/overwatchdashboard_test.iml" group="overwatchdashboard" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/overwatchdashboard_test.iml" filepath="$PROJECT_DIR$/.idea/modules/overwatchdashboard_test.iml" group="overwatchdashboard" />
     </modules>
   </component>

@@ -1,12 +1,12 @@
 package me.duncanleo.overwatchdashboard.network
 
+import com.squareup.moshi.KotlinJsonAdapterFactory
+import com.squareup.moshi.Moshi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import com.squareup.moshi.Moshi
-import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import com.squareup.moshi.KotlinJsonAdapterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
 /**
@@ -32,12 +32,12 @@ object Network {
             .addInterceptor(logger)
             .build()
 
-    val owAPIService
+    val nodeOWAPIService
     get() = Retrofit.Builder()
-            .baseUrl("https://owapi.net/api/v3/")
+            .baseUrl("https://ow-api.herokuapp.com/")
             .client(okHttpClient)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(moshiConverter())
             .build()
-            .create(OWAPIService::class.java)
+            .create(NodeOWAPIService::class.java)
 }
