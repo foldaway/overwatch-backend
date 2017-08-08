@@ -17,5 +17,5 @@ interface NodeOWAPIService {
 
     @Headers("Accept: application/json")
     @GET("profile/{platform}/{region}/{battletag}")
-    fun getPlayerHeroes(@Path("platform") platform: String, @Path("region") region: String, @Path("battletag") battleTag: String): Single<PlayerProfileResponse>
+    fun getPlayerProfile(@Path("platform") platform: String, @Path("region") region: String, @Path("battletag") battleTag: String): Single<PlayerProfileResponse>
 }

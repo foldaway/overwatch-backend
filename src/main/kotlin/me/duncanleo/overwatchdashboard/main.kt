@@ -47,7 +47,7 @@ fun main(args: Array<String>) {
                     println("[TIMER] Fetching heroes for '${it.first}'")
                 }
                 .flatMap({
-                    Network.nodeOWAPIService.getPlayerHeroes(platform = it.first.platform, region = it.first.region, battleTag = it.first.tag)
+                    Network.nodeOWAPIService.getPlayerProfile(platform = it.first.platform, region = it.first.region, battleTag = it.first.tag)
                             .toObservable()
                 }, { (first, second), heroesRes ->
                     Player(first.tag, first.platform, first.region, second, heroesRes)
