@@ -5,3 +5,5 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Player.create!(battle_tag: "FrostyFeet-11226", player_icon: "", platform: "pc", region: "us")

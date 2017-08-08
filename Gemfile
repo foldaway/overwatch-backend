@@ -52,3 +52,9 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# Added at 2017-08-08 17:00:33 +0800 by duncanleo:
+gem "pg", "~> 0.21.0"
+
+# Added at 2017-08-08 17:06:12 +0800 by duncanleo:
+gem "responders", "~> 2.4"

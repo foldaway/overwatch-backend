@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  battle_tag: MyString
+  player_icon: MyString
+  platform: MyString
+  region: MyString
+
+two:
+  battle_tag: MyString
+  player_icon: MyString
+  platform: MyString
+  region: MyString
