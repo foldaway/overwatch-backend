@@ -1,9 +1,14 @@
 package me.duncanleo.overwatchdashboard
 
+import com.natpryce.konfig.ConfigurationProperties
+import com.natpryce.konfig.ConfigurationProperties.Companion.systemProperties
+import com.natpryce.konfig.EnvironmentVariables
+import com.natpryce.konfig.overriding
 import com.squareup.moshi.KotlinJsonAdapterFactory
 import com.squareup.moshi.Moshi
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
+import me.duncanleo.overwatchdashboard.config.database
 import me.duncanleo.overwatchdashboard.model.*
 import me.duncanleo.overwatchdashboard.network.Network
 import me.duncanleo.overwatchdashboard.web.StartServer
@@ -31,7 +36,15 @@ fun main(args: Array<String>) {
         return
     }
 
-    Database.connect("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1", driver = "org.h2.Driver")
+    val config = systemProperties() overriding
+        EnvironmentVariables() overriding
+        ConfigurationProperties.fromResource("config.dev.properties") overriding
+        ConfigurationProperties.fromResource("config.properties")
+
+    Database.connect(
+            "jdbc:postgresql://${config[database.host]}:${config[database.port]}/${config[database.name]}?user=${config[database.user]}&password=${config[database.password]}&ssl=${config[database.ssl]}",
+            driver = "org.postgresql.Driver"
+    )
     transaction {
         logger.addLogger(StdOutSqlLogger)
         create (Players, PlayersData)
