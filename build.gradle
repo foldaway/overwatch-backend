@@ -52,6 +52,7 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-moshi:2.3.0'
     compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
     compile 'org.postgresql:postgresql:42.1.4.jre7'
+    compile 'com.h2database:h2:1.4.196'
     compile 'org.jetbrains.exposed:exposed:0.8.5'
     compile 'com.natpryce:konfig:1.6.1.0'
     compile "io.reactivex.rxjava2:rxjava:2.1.0"

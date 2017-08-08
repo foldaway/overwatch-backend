@@ -11,7 +11,7 @@ class Player(id: EntityID<Int>) : IntEntity(id) {
     companion object : IntEntityClass<Player>(Players)
 
     var battleTag by Players.battleTag
-    var portrait by Players.playerIcon
+    var playerIcon by Players.playerIcon
     var platform by Players.platform
     var region by Players.region
 

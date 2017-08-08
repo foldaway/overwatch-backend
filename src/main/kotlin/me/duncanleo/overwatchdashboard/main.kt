@@ -85,7 +85,7 @@ fun main(args: Array<String>) {
 
                         val dbPlayer = Player.findOrInsert({ Players.battleTag eq first.tag }, {
                             battleTag = first.tag
-                            portrait = second.portrait
+                            playerIcon = second.portrait
                             platform = first.platform
                             region = first.region
                         })
