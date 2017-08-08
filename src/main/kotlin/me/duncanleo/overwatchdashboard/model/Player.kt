@@ -1,5 +1,6 @@
 package me.duncanleo.overwatchdashboard.model
 
+import com.google.gson.annotations.Expose
 import org.jetbrains.exposed.dao.EntityID
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass
@@ -10,10 +11,10 @@ import org.jetbrains.exposed.dao.IntEntityClass
 class Player(id: EntityID<Int>) : IntEntity(id) {
     companion object : IntEntityClass<Player>(Players)
 
-    var battleTag by Players.battleTag
-    var playerIcon by Players.playerIcon
-    var platform by Players.platform
-    var region by Players.region
+    @delegate:Expose var battleTag by Players.battleTag
+    @delegate:Expose var playerIcon by Players.playerIcon
+    @delegate:Expose var platform by Players.platform
+    @delegate:Expose var region by Players.region
 
     val datas by PlayerData referrersOn PlayersData.player
 }

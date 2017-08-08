@@ -1,20 +1,20 @@
 package me.duncanleo.overwatchdashboard
 
+import com.google.gson.Gson
 import com.natpryce.konfig.ConfigurationProperties
 import com.natpryce.konfig.ConfigurationProperties.Companion.systemProperties
 import com.natpryce.konfig.EnvironmentVariables
 import com.natpryce.konfig.overriding
-import com.squareup.moshi.KotlinJsonAdapterFactory
-import com.squareup.moshi.Moshi
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import me.duncanleo.overwatchdashboard.config.database
 import me.duncanleo.overwatchdashboard.model.*
 import me.duncanleo.overwatchdashboard.network.Network
 import me.duncanleo.overwatchdashboard.web.StartServer
-import org.jetbrains.exposed.sql.*
-import org.jetbrains.exposed.sql.transactions.transaction
+import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils.create
+import org.jetbrains.exposed.sql.StdOutSqlLogger
+import org.jetbrains.exposed.sql.transactions.transaction
 import org.joda.time.DateTime
 import java.io.File
 import java.util.concurrent.TimeUnit
@@ -28,9 +28,8 @@ val data = mutableMapOf<String, Player>()
 
 fun main(args: Array<String>) {
     // Periodically get updated data
-    val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory())
-            .build()
-    val tags = moshi.adapter(Array<Tag>::class.java).fromJson(File("tags.json").readText())
+    val gson = Gson()
+    val tags = gson.fromJson(File("tags.json").readText(), Array<Tag>::class.java)
     if (tags == null) {
         print("Could not read tags.json")
         return

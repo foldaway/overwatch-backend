@@ -1,6 +1,6 @@
 package me.duncanleo.overwatchdashboard.network.model
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 
 /**
  * Created by duncanleo on 29/6/17.
@@ -17,7 +17,7 @@ data class PlayerProfileResponse (
 ) {
     data class CompData (
             val rank: Int?,
-            @Json(name = "rank_img") val rankImg: String?
+            @SerializedName("rank_img") val rankImg: String?
     )
     data class PlayTimes (
             val quickplay: String?,

@@ -1,6 +1,6 @@
 package me.duncanleo.overwatchdashboard.network.model
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 
 /**
  * Created by duncanleo on 29/6/17.
@@ -12,13 +12,13 @@ data class PlayerStatsResponse (
         val stats: Stats?
 ) {
     data class Stats (
-            @Json(name = "top_heroes") val topHeroes: GameModesContainerTH,
+            @SerializedName("top_heroes") val topHeroes: GameModesContainerTH,
             val combat: GameModesContainer,
             val deaths: GameModesContainer,
-            @Json(name = "match_awards") val matchAwards: GameModesContainer,
+            @SerializedName("match_awards") val matchAwards: GameModesContainer,
             val assists: GameModesContainer,
             val average: GameModesContainer,
-            @Json(name = "miscellaneous") val misc: GameModesContainer,
+            @SerializedName("miscellaneous") val misc: GameModesContainer,
             val best: GameModesContainer,
             val game: GameModesContainer
     ) {
@@ -33,7 +33,7 @@ data class PlayerStatsResponse (
         )
 
         data class Hero (
-                @Json(name = "hero") val name: String,
+                @SerializedName("hero") val name: String,
                 val played: String,
                 val img: String
         )
