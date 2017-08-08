@@ -1,41 +1,19 @@
 package me.duncanleo.overwatchdashboard.model
 
-import me.duncanleo.overwatchdashboard.network.model.PlayerProfileResponse
-import me.duncanleo.overwatchdashboard.network.model.PlayerStatsResponse
+import org.jetbrains.exposed.dao.EntityID
+import org.jetbrains.exposed.dao.IntEntity
+import org.jetbrains.exposed.dao.IntEntityClass
 
 /**
- * Model class representing an Overwatch player
+ * Created by duncanleo on 7/8/17.
  */
-data class Player(
-        val battleTag: String,
-        val platform: String,
-        val region: String,
-        val stats: PlayerStatsResponse,
-        val profile: PlayerProfileResponse
-) {
-    val battleTagName: String
-        get() = profile.username
+class Player(id: EntityID<Int>) : IntEntity(id) {
+    companion object : IntEntityClass<Player>(Players)
 
-    val battleTagNumber: String
-        get() = battleTag.replace("$battleTag-", "")
+    var battleTag by Players.battleTag
+    var portrait by Players.playerIcon
+    var platform by Players.platform
+    var region by Players.region
 
-    val seasonRating: Int?
-        get() = profile.competitive?.rank
-
-    val avatar: String?
-        get() = profile.portrait
-
-    val mainQP: String?
-        get() = fixString(stats.stats?.topHeroes?.quickplay?.first()?.name)
-
-    val mainComp: String?
-        get() = fixString(stats.stats?.topHeroes?.competitive?.first()?.name)
-
-    fun fixString(str: String?): String? {
-        return str?.toLowerCase()
-                ?.replace(".", "")
-                ?.replace("ú", "u")
-                ?.replace(": ", "-")
-                ?.replace("ö", "o")
-    }
+    val datas by PlayerData referrersOn PlayersData.player
 }
