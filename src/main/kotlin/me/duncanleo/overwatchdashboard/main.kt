@@ -71,6 +71,15 @@ fun main(args: Array<String>) {
                     Network.nodeOWAPIService.getPlayerProfile(platform = it.first.platform, region = it.first.region, battleTag = it.first.tag)
                             .toObservable()
                 }, { (first, second), profileResponse ->
+                    Triple(first, second, profileResponse)
+                })
+                .retryWhen {
+                    it.doOnNext {
+                        it.printStackTrace()
+                        println("[TIMER] Retry.")
+                    }.delay(5, TimeUnit.SECONDS)
+                }
+                .subscribe({ (first, second, third) ->
                     transaction {
                         logger.addLogger(StdOutSqlLogger)
 
@@ -92,7 +101,7 @@ fun main(args: Array<String>) {
                         PlayerData.new {
                             player = dbPlayer
                             level = second.level
-                            sr = profileResponse.competitive?.rank ?: -1
+                            sr = third.competitive?.rank ?: -1
                             date = DateTime()
                             mainQP = mainHeroQP
 
@@ -105,18 +114,7 @@ fun main(args: Array<String>) {
                             }
                         }
                     }
-                })
-                .retryWhen {
-                    it.doOnNext {
-                        it.printStackTrace()
-                        println("[TIMER] Retry.")
-                    }.delay(5, TimeUnit.SECONDS)
-                }
-                .subscribe({ player ->
-//                    println("[TIMER] Completed fetching for '${player.battleTag}'")
-//                    data[player.battleTag] = player
                 }, { error ->
-//                    data.remove( /)
                     error.printStackTrace()
                 })
     }
