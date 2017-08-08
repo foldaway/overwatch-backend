@@ -4,9 +4,14 @@ import me.duncanleo.overwatchdashboard.model.Player
 import org.jetbrains.exposed.sql.transactions.transaction
 
 val playerRouteGroup = spark.RouteGroup {
-    http.get("", "application/json", { _, _ ->
-        transaction {
-            Player.all().toList()
-        }
-    }, transformer::render)
+    http.get(
+            "",
+            { _, res ->
+                res.type(jsonMimeType)
+                transaction {
+                    Player.all().toList()
+                }
+            },
+            transformer::render
+    )
 }

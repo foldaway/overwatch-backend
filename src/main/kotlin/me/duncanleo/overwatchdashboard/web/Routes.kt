@@ -14,6 +14,7 @@ import java.io.File
 
 val http = ignite()
 val transformer = JsonTransformer()
+val jsonMimeType = "application/json"
 
 fun StartServer() {
     val port = System.getenv("PORT")?.toIntOrNull() ?: 8080
@@ -25,6 +26,7 @@ fun StartServer() {
 
     http.path("/api") {
         http.path("/players", playerRouteGroup)
+        http.path("/playerdata", playerDataRouteGroup)
     }
 
     http.get("/") { _, _ ->
