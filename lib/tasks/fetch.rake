@@ -34,13 +34,16 @@ task :fetch_data => :environment do
 
     puts "Updated player icon"
 
-    main_qp_hero = Hero.first_or_create(
-      name: stats['top_heroes']['quickplay'].first['hero'],
-      img: stats['top_heroes']['quickplay'].first['img']
-    )
+    main_qp_hero = Hero
+      .where(name: stats['top_heroes']['quickplay'].first['hero'])
+      .first_or_create(
+        name: stats['top_heroes']['quickplay'].first['hero'],
+        img: stats['top_heroes']['quickplay'].first['img']
+      )
 
     main_comp_hero = stats['top_heroes']['competitive'].any? ?
-    Hero.first_or_create(
+    Hero.where(name: stats['top_heroes']['competitive'].first['hero'],)
+      .first_or_create(
       name: stats['top_heroes']['competitive'].first['hero'],
       img: stats['top_heroes']['competitive'].first['img']
     ) : nil
