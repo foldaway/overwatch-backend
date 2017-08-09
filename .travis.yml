@@ -12,3 +12,4 @@ deploy:
     master: overwatch-dashboard-kt
     add-deployment: overwatch-dashboard-kt
   on: master
+script: bundle exec rspec
