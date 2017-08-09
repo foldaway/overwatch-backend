@@ -1,9 +1,8 @@
 language: ruby
 rvm:
 - 2.4.1
-before_cache:
-- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+dist: trusty
+sudo: required
 deploy:
   provider: heroku
   api_key:
