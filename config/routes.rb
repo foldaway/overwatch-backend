@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :players, only: [:index]
       resources :heroes, only: [:index]
+      resources :player_datas, only: [:index]
     end
   end
 end
