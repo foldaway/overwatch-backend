@@ -3,6 +3,10 @@ rvm:
 - 2.4.1
 dist: trusty
 sudo: required
+services:
+- postgresql
+before_script:
+  - psql -c 'create database owdashboard_test;' -U postgres
 deploy:
   provider: heroku
   api_key:
