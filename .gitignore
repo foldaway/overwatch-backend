@@ -47,9 +47,3 @@ bower.json
 .byebug_history
 
 # End of https://www.gitignore.io/api/rails
-# React on Rails
-npm-debug.log*
-node_modules
-
-# Generated js bundles
-/public/webpack/*
