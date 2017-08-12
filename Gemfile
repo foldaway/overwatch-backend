@@ -67,9 +67,6 @@ gem "pg", "~> 0.21.0"
 # Added at 2017-08-08 17:06:12 +0800 by duncanleo:
 gem "responders", "~> 2.4"
 
-# Added at 2017-08-09 09:55:01 +0800 by duncanleo:
-gem "react_on_rails", "~> 8.0"
-
 gem 'mini_racer', platforms: :ruby
 gem 'webpacker_lite'
 
