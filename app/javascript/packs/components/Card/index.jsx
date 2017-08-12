@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './styles.css';
 
 const Card = props => (
-  <div>
+  <div className="card--container">
     <img src={props.mainCompImg} alt="" />
     <div>
       <img src={props.playerIcon} alt="" />
