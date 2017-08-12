@@ -75,3 +75,6 @@ gem "httparty", "~> 0.15.6"
 
 # Added at 2017-08-09 13:36:36 +0800 by duncanleo:
 gem "pry", "~> 0.10.4"
+
+# Added at 2017-08-12 10:45:29 +0800 by duncanleo:
+gem "webpacker", "~> 2.0"
