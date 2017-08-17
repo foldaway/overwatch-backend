@@ -6,15 +6,14 @@ sudo: required
 services:
 - postgresql
 before_install:
-- sudo apt-get -qq update
-- sudo apt-get install -y libsqlite3-dev
+- openssl aes-256-cbc -K $encrypted_a17f0d27e567_key -iv $encrypted_a17f0d27e567_iv -in deploy_key.enc -out /tmp/deploy_key -d
+- eval "$(ssh-agent -s)"
+- chmod 600 /tmp/deploy_key
+- ssh-add /tmp/deploy_key
 before_script:
   - psql -c 'create database owdashboard_test;' -U postgres
 deploy:
-  provider: heroku
-  api_key:
-    secure: vRurORRdT3kazLBlR7IViPMOGILJMsgiOE1f5OHno+uL3Dl16YK2aWqLFQReqfXJLmdb9mEJGJxaaNTG3+CbNja+pxSHTYcMAhspK3N9b4F/PPSMHcwWIJq9dLv/mzT6f9Pi/eAlj1ssecuAl7lWsvCyDnQooqFNAzA0cYtqkVqPNfmS5bL1yhb8BFkP7EH9zoYLzzzdWr6iAPTeCpTgI0BY8Og+QT5s8KfC+kpwl5I1t4PItQd+/Igz3t/q1cen75hK4tv68vnHsTWd6xypVYfGP0/gwzC65b/RajclTIEE52+QXPQ4FyrAmlCH8x2Kjf6MvpgiImaNbtkSGkFr/wraYGomYuR3fuB51upPmKKPxMji2GoCS/VbDaFmtqnDeoo5k/Vsku+EO2qTG8LG98Zz7CZ+JO98SkrhLXYli7MXziyL0ZU2HWAzdbD8AXy4PmsbsljB/AIy+l4+p7M2HM3azDXpAoCA7C1G1nRhB6yPZE3QZCvblITuDYZy/pOw8/ImmBb0EvrT0VhZIas16rPUosgQJUrsZhW6gWGFqe92NfeTmfhzNs8+GJJahMX9t1vkTACHfxVy5yQJQs63p4CPxjcZDzalo3aVc/Q5HVbQNh+PQa2lmaoLKRZ5od5RLBEszoOV9UH9SwbBuPJGAXJAxAfMwAfcVV8XptbBh8k=
-  app:
-    master: owdash
+  provider: script
+  script: deploy.sh
   on: master
 script: bundle exec rspec
