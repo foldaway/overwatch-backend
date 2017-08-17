@@ -20,3 +20,4 @@ test:
 production:
   <<: *default
   database: owdashboard_prod
+  url: <%= ENV['DATABASE_URL'] %>
