@@ -1,5 +1,6 @@
 // Note: You must restart bin/webpack-dev-server for changes to take effect
 
+const webpack = require('webpack')
 const merge = require('webpack-merge')
 const sharedConfig = require('./shared.js')
 const { settings, output } = require('./configuration.js')
@@ -28,6 +29,11 @@ module.exports = merge(sharedConfig, {
     watchOptions: {
       ignored: /node_modules/
     },
-    hot: true
-  }
+    hot: settings.dev_server.hmr
+  },
+
+  plugins: settings.dev_server.hmr ? [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin()
+  ] : []
 })
