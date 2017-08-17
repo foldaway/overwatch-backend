@@ -12,8 +12,10 @@ before_install:
 - ssh-add /tmp/deploy_key
 before_script:
   - psql -c 'create database owdashboard_test;' -U postgres
+before_deploy:
+- chmod +x deploy.sh
 deploy:
   provider: script
-  script: chmod +x deploy.sh && deploy.sh
+  script: "./deploy.sh"
   on: master
 script: bundle exec rspec
