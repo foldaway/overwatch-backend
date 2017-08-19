@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Card from '../Card';
+import styles from './styles.scss';
 
 class CardList extends React.Component {
   constructor(props) {

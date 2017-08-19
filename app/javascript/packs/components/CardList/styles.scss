@@ -1,0 +1,16 @@
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+}
+
+li {
+  margin: 1em;		
+  padding: 1.5em;		
+  align-items: center;		
+  justify-content: center;
+}
+
+li:last-child {
+  margin: 1em;
+}
