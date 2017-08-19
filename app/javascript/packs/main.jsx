@@ -2,13 +2,21 @@
 // like app/views/layouts/application.html.erb. All it does is render <div>Hello React</div> at the bottom
 // of the page.
 
+import 'normalize.css';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Header from './components/Header';
 import CardList from './components/CardList';
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <CardList />,
+    (
+      <div>
+        <Header />
+        <CardList />
+      </div>
+    ),
     document.body.appendChild(document.createElement('div')),
   )
 });
