@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :players, only: [:index, :show]
       get 'players/:id/data', to: 'player_datas#show_by_player_id'
-      resources :heroes, only: [:index]
+      resources :heroes, only: [:index, :show]
       resources :player_datas, only: [:index]
     end
   end

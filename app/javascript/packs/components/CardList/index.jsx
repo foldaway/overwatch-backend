@@ -20,16 +20,16 @@ class CardList extends React.Component {
           .then(res => res.data)
           .then(datas => Object.assign(player, { datas })),
         ),
-      ).then(players => this.setState({ players })),
-      );
+      ))
+      .then(players => this.setState({ players }))
+      .catch(console.error);
   }
 
   render() {
-    console.log(this.state.cards);
     return (
       <ul>
         {this.state.players.map(({ id, battle_tag, player_icon, datas }) =>
-          <Card key={id} battleTag={battle_tag} playerIcon={player_icon} seasonRating={datas[0].sr} />,
+          <Card key={id} battleTag={battle_tag} playerIcon={player_icon} data={Array.isArray(datas) ? datas[0] : null} />,
         )}
       </ul>
     );
