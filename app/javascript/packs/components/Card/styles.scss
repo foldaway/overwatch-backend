@@ -82,8 +82,38 @@
     span {
       color: white;
 
-      &.battleTag {
+      &.battle-tag {
         font-weight: 600;
+      }
+
+      &.season-rating {
+        &.bronze {
+          color: #92493D;
+        }
+
+        &.silver {
+          color: #BEBEBE;
+        }
+
+        &.gold {
+          color: #D5BC61;
+        }
+
+        &.platinum {
+          color: #DDDDDC;
+        }
+
+        &.diamond {
+          color: #527093;
+        }
+
+        &.master {
+          color: #F6BF57;
+        }
+
+        &.grand-master {
+          color: #DAAB5A;
+        }
       }
     }
   }

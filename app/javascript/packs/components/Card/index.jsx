@@ -19,6 +19,24 @@ class Card extends React.Component {
       .catch(console.error);
   }
 
+  getSRStyle() {
+    const { sr } = this.props.data;
+    if (sr >= 4000) {
+      return styles.grandMaster;
+    } else if (sr >= 3500) {
+      return styles.master;
+    } else if (sr >= 3000) {
+      return styles.diamond;
+    } else if (sr >= 2500) {
+      return styles.platinum;
+    } else if (sr >= 2000) {
+      return styles.gold;
+    } else if (sr >= 1500) {
+      return styles.silver;
+    }
+    return styles.bronze;
+  }
+
   render() {
     return (
       <div className={styles.card}>
@@ -32,7 +50,7 @@ class Card extends React.Component {
             <span className={styles.battleTag}>{this.props.battleTag}</span>
             {
               this.props.data.sr !== -1 ? (
-                <span>SR: {this.props.data.sr}</span>
+                <span className={[styles.seasonRating, this.getSRStyle()].join(' ')}>SR: {this.props.data.sr}</span>
               ) : (
                 <span>No SR</span>
               )
