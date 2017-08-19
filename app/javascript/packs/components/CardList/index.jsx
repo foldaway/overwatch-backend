@@ -27,10 +27,12 @@ class CardList extends React.Component {
 
   render() {
     return (
-      <ul>
-        {this.state.players.map(({ id, battle_tag, player_icon, datas }) =>
-          <Card key={id} battleTag={battle_tag} playerIcon={player_icon} data={Array.isArray(datas) ? datas[0] : null} />,
-        )}
+      <ul className={styles.list}>
+        {this.state.players.map(({ id, battle_tag, player_icon, datas }) => (
+          <li key={id}>
+            <Card battleTag={battle_tag} playerIcon={player_icon} data={Array.isArray(datas) ? datas[0] : null} />
+          </li>
+        ))}
       </ul>
     );
   }
