@@ -21,6 +21,7 @@ def to_integer(str)
   str.to_i if Integer(str) rescue -1
 end
 
+desc "Fetch players' data from the OW API"
 task :fetch_data => :environment do
   Player.all.each do |player|
     puts "Processing '#{player.battle_tag}'"
