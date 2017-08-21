@@ -3,12 +3,11 @@
 /* eslint global-require: 0 */
 /* eslint import/no-dynamic-require: 0 */
 
-const webpack = require('webpack')
-const { basename, dirname, join, relative, resolve } = require('path')
-const { sync } = require('glob')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const ManifestPlugin = require('webpack-manifest-plugin')
-const extname = require('path-complete-extname')
+const webpack = require('webpack');
+const { basename, dirname, join, relative, resolve } = require('path');
+const { sync } = require('glob');
+const ManifestPlugin = require('webpack-manifest-plugin');
+const extname = require('path-complete-extname');
 const { env, settings, output, loadersDir } = require('./configuration.js');
 
 const extensionGlob = `**/*{${settings.extensions.join(',')}}*`;
