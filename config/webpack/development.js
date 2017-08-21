@@ -1,19 +1,19 @@
 // Note: You must restart bin/webpack-dev-server for changes to take effect
 
-const webpack = require('webpack')
-const merge = require('webpack-merge')
-const sharedConfig = require('./shared.js')
-const { settings, output } = require('./configuration.js')
+const webpack = require('webpack');
+const merge = require('webpack-merge');
+const sharedConfig = require('./shared.js');
+const { settings, output } = require('./configuration.js');
 
 module.exports = merge(sharedConfig, {
   devtool: 'cheap-eval-source-map',
 
   stats: {
-    errorDetails: true
+    errorDetails: true,
   },
 
   output: {
-    pathinfo: true
+    pathinfo: true,
   },
 
   devServer: {
@@ -27,13 +27,13 @@ module.exports = merge(sharedConfig, {
     headers: { 'Access-Control-Allow-Origin': '*' },
     historyApiFallback: true,
     watchOptions: {
-      ignored: /node_modules/
+      ignored: /node_modules/,
     },
-    hot: settings.dev_server.hmr
+    hot: settings.dev_server.hmr,
   },
 
   plugins: settings.dev_server.hmr ? [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin()
-  ] : []
-})
+    new webpack.NamedModulesPlugin(),
+  ] : [],
+});
