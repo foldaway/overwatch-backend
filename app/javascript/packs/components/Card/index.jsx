@@ -49,7 +49,7 @@ class Card extends React.Component {
           <img className={styles.playerIcon} src={this.props.playerIcon} alt="" />
           <div className={styles.details}>
             <span className={styles.battleTag}>{this.props.battleTag}</span>
-            <div className="tags">
+            <div className={styles.tags}>
               {
                 this.props.data.sr !== -1 ? (
                   <span className={[styles.seasonRating, this.getSRStyle()].join(' ')}>{this.props.data.sr}</span>
