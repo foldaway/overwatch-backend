@@ -50,6 +50,7 @@ class Card extends React.Component {
           <div className={styles.details}>
             <span className={styles.battleTag}>{this.props.battleTag}</span>
             <div className={styles.tags}>
+              <LevelDisplay level={this.props.data.level} />
               {
                 this.props.data.sr !== -1 ? (
                   <span className={[styles.seasonRating, this.getSRStyle()].join(' ')}>{this.props.data.sr}</span>
@@ -57,7 +58,6 @@ class Card extends React.Component {
                   <span className={styles.seasonRating}>?</span>
                 )
               }
-              <LevelDisplay level={this.props.data.level} />
             </div>
           </div>
         </div>
