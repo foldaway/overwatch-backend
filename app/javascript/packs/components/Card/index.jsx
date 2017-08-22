@@ -48,7 +48,7 @@ class Card extends React.Component {
           <img className={styles.playerIcon} src={this.props.playerIcon} alt="" />
           <div className={styles.details}>
             <span className={styles.battleTag}>{this.props.battleTag}</span>
-            <div className="sr">
+            <div className="tags">
               {
                 this.props.data.sr !== -1 ? (
                   <span className={[styles.seasonRating, this.getSRStyle()].join(' ')}>{this.props.data.sr}</span>
@@ -56,6 +56,7 @@ class Card extends React.Component {
                   <span className={styles.seasonRating}>?</span>
                 )
               }
+              <span>{this.props.data.level}</span>
             </div>
           </div>
         </div>
@@ -71,6 +72,7 @@ Card.defaultProps = {
     mainQP_id: -1,
     mainComp_id: -1,
     sr: -1,
+    level: -1,
   },
 };
 
@@ -81,6 +83,7 @@ Card.propTypes = {
     mainQP_id: PropTypes.number,
     mainComp_id: PropTypes.number,
     sr: PropTypes.number,
+    level: PropTypes.number,
   }),
 };
 
