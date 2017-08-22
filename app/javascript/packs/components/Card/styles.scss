@@ -66,33 +66,46 @@
   }
 
   .player-icon {
-    width: 4em;		
-    height: 4em;		
-    margin-right: 0.7em;		
+    width: 3.5em;		
+    height: 3.5em;		
+    margin-right: 0.5em;		
     transition: all 0.3s ease-in-out;		
     -webkit-transition: all 0.3s ease-in-out;		
   }
 
   .details {
     display: flex;		
-    flex-direction: column;		
+    flex-direction: column;
+    flex-grow: 1;
     transition: all 0.3s ease-out;		
-    -webkit-transition: all 0.3s ease-out;		
+    -webkit-transition: all 0.3s ease-out;
+    overflow: hidden;
 
     span {
       color: white;
 
       &.battle-tag {
         font-weight: 600;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-bottom: 0.2em;
       }
 
       &.season-rating {
+        flex-grow: 0;
+        border: 1.7px solid;
+        border-radius: 3px;
+        padding: 0 3px;
+        
         &.bronze {
           color: #92493D;
         }
 
         &.silver {
           color: #BEBEBE;
+          border-color: #BEBEBE;
         }
 
         &.gold {
