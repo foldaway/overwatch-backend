@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import styles from './styles.scss';
+import LevelDisplay from '../LevelDisplay';
 
 class Card extends React.Component {
   constructor(props) {
@@ -56,7 +57,7 @@ class Card extends React.Component {
                   <span className={styles.seasonRating}>?</span>
                 )
               }
-              <span>{this.props.data.level}</span>
+              <LevelDisplay level={this.props.data.level} />
             </div>
           </div>
         </div>
