@@ -54,9 +54,7 @@ class Card extends React.Component {
               {
                 this.props.data.sr !== -1 ? (
                   <span className={[styles.seasonRating, this.getSRStyle()].join(' ')}>{this.props.data.sr}</span>
-                ) : (
-                  <span className={styles.seasonRating}>?</span>
-                )
+                ) : null
               }
             </div>
           </div>
