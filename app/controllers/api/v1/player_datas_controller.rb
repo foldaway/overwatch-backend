@@ -4,6 +4,6 @@ class Api::V1::PlayerDatasController < Api::V1::BaseController
   end
 
   def show_by_player_id
-    render :json => PlayerData.joins(:player).where(players: { id: params[:id]})
+    render :json => PlayerData.joins(:player).where(players: { id: params[:id]}).order('created_at DESC')
   end
 end
