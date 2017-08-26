@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import styles from './styles.scss';
+import LevelDisplay from '../LevelDisplay';
 
 class Card extends React.Component {
   constructor(props) {
@@ -48,13 +49,14 @@ class Card extends React.Component {
           <img className={styles.playerIcon} src={this.props.playerIcon} alt="" />
           <div className={styles.details}>
             <span className={styles.battleTag}>{this.props.battleTag}</span>
-            {
-              this.props.data.sr !== -1 ? (
-                <span className={[styles.seasonRating, this.getSRStyle()].join(' ')}>SR: {this.props.data.sr}</span>
-              ) : (
-                <span>No SR</span>
-              )
-            }
+            <div className={styles.tags}>
+              <LevelDisplay level={this.props.data.level} />
+              {
+                this.props.data.sr !== -1 ? (
+                  <span className={[styles.seasonRating, this.getSRStyle()].join(' ')}>{this.props.data.sr}</span>
+                ) : null
+              }
+            </div>
           </div>
         </div>
       </div>
@@ -69,6 +71,7 @@ Card.defaultProps = {
     mainQP_id: -1,
     mainComp_id: -1,
     sr: -1,
+    level: -1,
   },
 };
 
@@ -79,6 +82,7 @@ Card.propTypes = {
     mainQP_id: PropTypes.number,
     mainComp_id: PropTypes.number,
     sr: PropTypes.number,
+    level: PropTypes.number,
   }),
 };
 
