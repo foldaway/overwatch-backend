@@ -1,22 +1,21 @@
-// Run this example by adding <%= javascript_pack_tag 'hello_react' %> to the head of your layout file,
-// like app/views/layouts/application.html.erb. All it does is render <div>Hello React</div> at the bottom
-// of the page.
-
 import 'normalize.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 import Header from './components/Header';
-import CardList from './components/CardList';
+import Main from './components/Main';
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
     (
-      <div>
-        <Header />
-        <CardList />
-      </div>
+      <BrowserRouter>
+        <div>
+          <Header />
+          <Main />
+        </div>
+      </BrowserRouter>
     ),
     document.body.appendChild(document.createElement('div')),
-  )
+  );
 });
