@@ -31,7 +31,7 @@ def normalise_hero_name(name)
 end
 
 def get_hero_image(name)
-  "https://d1u1mce87gyfbn.cloudfront.net/hero/#{normalise_hero_name(name)}/career-portrait.png"
+  "https://blzgdapipro-a.akamaihd.net/hero/#{normalise_hero_name(name)}/hero-select-portrait.png"
 end
 
 desc "Fetch players' data from the OW API"
