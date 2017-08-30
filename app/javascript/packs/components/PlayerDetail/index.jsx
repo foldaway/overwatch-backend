@@ -61,7 +61,9 @@ class PlayerDetail extends Component {
     }
 
     return (
-      <span>Loading...</span>
+      <div className={styles.container}>
+        <span>Loading...</span>
+      </div>
     );
   }
 }
