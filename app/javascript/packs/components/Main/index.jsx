@@ -7,7 +7,7 @@ const Main = () => (
   <main>
     <Switch>
       <Route exact path="/" component={CardList} />
-      <Route path="/player" component={PlayerDetail} />
+      <Route path="/player/:playerId" component={PlayerDetail} />
     </Switch>
   </main>
 );
