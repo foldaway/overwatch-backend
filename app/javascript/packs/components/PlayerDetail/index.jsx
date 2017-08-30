@@ -4,6 +4,8 @@ import { LineChart, XAxis, YAxis, CartesianGrid, Line, Tooltip } from 'recharts'
 import Card from '../Card';
 import styles from './styles.scss';
 
+const sum = (prev, next) => prev + next;
+
 class PlayerDetail extends Component {
   constructor(props) {
     super(props);
@@ -31,20 +33,27 @@ class PlayerDetail extends Component {
           created_at: new Date(data.created_at).toLocaleString(),
         }))
         .reverse();
+      const hasSR = datas
+        .map(data => data.sr)
+        .reduce(sum) / datas.length !== -1;
       return (
         <div className={styles.container}>
           <Card playerId={id} battleTag={battle_tag} playerIcon={player_icon} data={Array.isArray(datas) ? datas[0] : null} />
           <div className={styles.charts}>
-            <div>
-              <h1>SR</h1>
-              <LineChart width={400} height={200} data={chartData} >
-                <XAxis dataKey="created_at" />
-                <YAxis />
-                <Tooltip />
-                <CartesianGrid stroke="#f5f5f5" />
-                <Line type="monotone" dataKey="sr" stroke="#ff7300" yAxisId={0} />
-              </LineChart>
-            </div>
+            {
+              hasSR ? (
+                <div>
+                  <h1>SR</h1>
+                  <LineChart width={400} height={200} data={chartData} >
+                    <XAxis dataKey="created_at" />
+                    <YAxis />
+                    <Tooltip />
+                    <CartesianGrid stroke="#f5f5f5" />
+                    <Line type="monotone" dataKey="sr" stroke="#ff7300" yAxisId={0} />
+                  </LineChart>
+                </div>
+              ) : null
+            }
             <div>
               <h1>Level</h1>
               <LineChart width={400} height={200} data={chartData} >
