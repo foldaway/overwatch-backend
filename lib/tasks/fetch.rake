@@ -1,5 +1,7 @@
 desc "This task fetches data from the unofficial Overwatch API."
 
+require 'i18n'
+
 class NodeOWAPI
   include HTTParty
   base_uri  'ow-api.herokuapp.com'
@@ -21,6 +23,17 @@ def to_integer(str)
   str.to_i if Integer(str) rescue -1
 end
 
+def normalise_hero_name(name)
+  name = I18n.transliterate(name.downcase)
+  name.gsub!(/\s/, '-')
+  name.gsub!(/[^A-Za-z0-9\-]/, '')
+  name
+end
+
+def get_hero_image(name)
+  "https://blzgdapipro-a.akamaihd.net/hero/#{normalise_hero_name(name)}/hero-select-portrait.png"
+end
+
 desc "Fetch players' data from the OW API"
 task :fetch_data => :environment do
   Player.all.each do |player|
@@ -35,23 +48,29 @@ task :fetch_data => :environment do
 
     puts "Updated player icon"
 
+    main_qp_hero_name = stats['top_heroes']['quickplay'].first['hero']
+
     main_qp_hero = Hero
-      .where(name: stats['top_heroes']['quickplay'].first['hero'])
+      .where(name: main_qp_hero_name)
       .first_or_create(
-        name: stats['top_heroes']['quickplay'].first['hero'],
-        img: stats['top_heroes']['quickplay'].first['img']
+        name: main_qp_hero_name,
+        img: get_hero_image(main_qp_hero_name)
       )
+    main_qp_hero.update(img: get_hero_image(main_qp_hero_name))
+
+    main_comp_hero_name = stats['top_heroes']['competitive'].any? ? stats['top_heroes']['competitive'].first['hero'] : ''
 
     main_comp_hero = stats['top_heroes']['competitive'].any? ?
-    Hero.where(name: stats['top_heroes']['competitive'].first['hero'],)
+    Hero.where(name: main_comp_hero_name,)
       .first_or_create(
-      name: stats['top_heroes']['competitive'].first['hero'],
-      img: stats['top_heroes']['competitive'].first['img']
+      name: main_comp_hero_name,
+      img: get_hero_image(main_comp_hero_name)
     ) : nil
+    main_comp_hero&.update(img: get_hero_image(main_comp_hero_name))
 
     puts "Updated main-ed heroes"
 
-    player_data = PlayerData.create(
+    PlayerData.create(
       level: profile['level'].to_i,
       sr: to_integer(profile['competitive']['rank']),
       player: player,
