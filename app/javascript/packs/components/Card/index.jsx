@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import styles from './styles.scss';
 import LevelDisplay from '../LevelDisplay';
 
@@ -40,31 +41,34 @@ class Card extends React.Component {
 
   render() {
     return (
-      <div className={styles.card}>
-        <div className={styles.mask} />
-        <div className={styles.hero}>
-          <img src={this.state.mainCompImg} alt="" />
-        </div>
-        <div className={styles.bottomPanel}>
-          <img className={styles.playerIcon} src={this.props.playerIcon} alt="" />
-          <div className={styles.details}>
-            <span className={styles.battleTag}>{this.props.battleTag}</span>
-            <div className={styles.tags}>
-              <LevelDisplay level={this.props.data.level} />
-              {
-                this.props.data.sr !== -1 ? (
-                  <span className={[styles.seasonRating, this.getSRStyle()].join(' ')}>{this.props.data.sr}</span>
-                ) : null
-              }
+      <Link to={`/player/${this.props.playerId}`}>
+        <div className={styles.card}>
+          <div className={styles.mask} />
+          <div className={styles.hero}>
+            <img src={this.state.mainCompImg} alt="" />
+          </div>
+          <div className={styles.bottomPanel}>
+            <img className={styles.playerIcon} src={this.props.playerIcon} alt="" />
+            <div className={styles.details}>
+              <span className={styles.battleTag}>{this.props.battleTag}</span>
+              <div className={styles.tags}>
+                <LevelDisplay level={this.props.data.level} />
+                {
+                  this.props.data.sr !== -1 ? (
+                    <span className={[styles.seasonRating, this.getSRStyle()].join(' ')}>{this.props.data.sr}</span>
+                  ) : null
+                }
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </Link>
     );
   }
 }
 
 Card.defaultProps = {
+  playerId: -1,
   battleTag: 'N/A',
   playerIcon: '',
   data: {
@@ -76,6 +80,7 @@ Card.defaultProps = {
 };
 
 Card.propTypes = {
+  playerId: PropTypes.number,
   battleTag: PropTypes.string,
   playerIcon: PropTypes.string,
   data: PropTypes.shape({

@@ -30,7 +30,7 @@ class CardList extends React.Component {
       <ul className={styles.list}>
         {this.state.players.map(({ id, battle_tag, player_icon, datas }) => (
           <li key={id}>
-            <Card battleTag={battle_tag} playerIcon={player_icon} data={Array.isArray(datas) ? datas[0] : null} />
+            <Card playerId={id} battleTag={battle_tag} playerIcon={player_icon} data={Array.isArray(datas) ? datas[0] : null} />
           </li>
         ))}
       </ul>
