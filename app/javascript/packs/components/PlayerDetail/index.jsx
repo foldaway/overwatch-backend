@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import { LineChart, XAxis, YAxis, CartesianGrid, Line, Tooltip } from 'recharts';
 import Card from '../Card';
 import styles from './styles.scss';
 
 const sum = (prev, next) => prev + next;
+
+
+const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  return `${date.getDate()}/${date.getMonth() + 1}`;
+};
 
 class PlayerDetail extends Component {
   constructor(props) {
@@ -30,7 +37,8 @@ class PlayerDetail extends Component {
       const { id, battle_tag, player_icon, datas } = this.state.player;
       const chartData = datas
         .map(data => Object.assign(data, {
-          created_at: new Date(data.created_at).toLocaleString(),
+          created_at: formatDate(data.created_at),
+          sr: data.sr !== -1 ? data.sr : null,
         }))
         .reverse();
       const hasSR = datas
@@ -76,5 +84,9 @@ class PlayerDetail extends Component {
     );
   }
 }
+
+PlayerDetail.propTypes = {
+  match: PropTypes.object.isRequired,
+};
 
 export default PlayerDetail;
