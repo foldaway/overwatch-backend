@@ -1,11 +1,28 @@
-.list {
-  display: flex;
-  flex-wrap: wrap;
-  list-style-type: none;
+.cardlist {
+  margin: 0 auto 2em;
+  max-width: 1250px;
+  width: 90%;
+}
 
-  li {
-    margin: 0.5em;
-    align-items: center;		
-    justify-content: center;
+.card-area {
+  display: grid;
+  grid-gap: 15px;
+  grid-template-columns: 230px;
+  justify-content: center;
+
+  @media (min-width: 500px) {
+    grid-template-columns: repeat(2, 230px);
+  }
+
+  @media (min-width: 750px) {
+    grid-template-columns: repeat(3, 230px);
+  }
+
+  @media (min-width: 1000px) {
+    grid-template-columns: repeat(4, 230px);
+  }
+
+  @media (min-width: 1250px) {
+    grid-template-columns: repeat(5, 230px);
   }
 }

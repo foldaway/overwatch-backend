@@ -14,26 +14,36 @@ class CardList extends React.Component {
 
   componentDidMount() {
     axios.get('/api/v1/players')
-      .then(res => res.data)
-      .then(players => Promise.all(
-        players.map(player => axios.get(`/api/v1/players/${player.id}/data`)
-          .then(res => res.data)
-          .then(datas => Object.assign(player, { datas })),
+      .then((res) => res.data)
+      .then((players) => Promise.all(
+        players.map((player) => axios.get(`/api/v1/players/${player.id}/data`)
+          .then((res) => res.data)
+          .then((datas) => Object.assign(player, { datas })),
         ),
       ))
-      .then(players => this.setState({ players }))
+      .then((players) => this.setState({ players }))
       .catch(console.error);
+  }
+
+  renderCards() {
+    return this.state.players.map(({ id, battle_tag, player_icon, datas }) => (
+      <Card
+        key={id}
+        playerId={id}
+        battleTag={battle_tag}
+        playerIcon={player_icon}
+        data={Array.isArray(datas) ? datas[0] : null}
+      />
+    ));
   }
 
   render() {
     return (
-      <ul className={styles.list}>
-        {this.state.players.map(({ id, battle_tag, player_icon, datas }) => (
-          <li key={id}>
-            <Card playerId={id} battleTag={battle_tag} playerIcon={player_icon} data={Array.isArray(datas) ? datas[0] : null} />
-          </li>
-        ))}
-      </ul>
+      <div className={styles.cardlist}>
+        <div className={styles.cardArea}>
+          {this.renderCards()}
+        </div>
+      </div>
     );
   }
 }
