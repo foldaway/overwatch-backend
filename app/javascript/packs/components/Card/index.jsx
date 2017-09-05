@@ -1,9 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import styles from './styles.scss';
+
 import LevelDisplay from '../LevelDisplay';
+import styles from './styles.scss';
 
 class Card extends React.Component {
   constructor(props) {
@@ -41,28 +42,24 @@ class Card extends React.Component {
 
   render() {
     return (
-      <Link to={`/player/${this.props.playerId}`}>
-        <div className={styles.card}>
+      <div className={styles.card}>
+        <Link to={`/player/${this.props.playerId}`} className={styles.link}>
           <div className={styles.mask} />
-          <div className={styles.hero}>
-            <img src={this.state.mainCompImg} alt="" />
-          </div>
+          <img className={styles.hero} src={this.state.mainCompImg} alt="" />
           <div className={styles.bottomPanel}>
             <img className={styles.playerIcon} src={this.props.playerIcon} alt="" />
-            <div className={styles.details}>
-              <span className={styles.battleTag}>{this.props.battleTag}</span>
-              <div className={styles.tags}>
-                <LevelDisplay level={this.props.data.level} />
-                {
-                  this.props.data.sr !== -1 ? (
-                    <span className={[styles.seasonRating, this.getSRStyle()].join(' ')}>{this.props.data.sr}</span>
-                  ) : null
-                }
-              </div>
+            <span className={styles.battleTag}>{this.props.battleTag}</span>
+            <div className={styles.tags}>
+              <LevelDisplay level={this.props.data.level} />
+              {
+                this.props.data.sr !== -1 ? (
+                  <span className={[styles.seasonRating, this.getSRStyle()].join(' ')}>{this.props.data.sr}</span>
+                ) : null
+              }
             </div>
           </div>
-        </div>
-      </Link>
+        </Link>
+      </div>
     );
   }
 }
