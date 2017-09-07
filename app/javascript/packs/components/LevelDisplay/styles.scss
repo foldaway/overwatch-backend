@@ -7,60 +7,74 @@ $goldText: #4a4f4d;
 
 .container {
   display: inline-block;
+  height: 22px;
+  overflow: hidden;
   font-family: 'SF Mono', 'Menlo', 'Monaco', Courier New, Courier, monospace;
   font-size: 0.9em;
-  border: 2px solid;
-  border-radius: 1.2px;
+  vertical-align: top;
+  border: 1.7px solid;
+  border-radius: 3px;
 
   &.bronze {
-    span {
-      color: $bronzeBg;
-      background-color: white;
+    background-color: $bronzeBg;
 
-      &.value {
-        color: white;
-        background-color: $bronzeBg;
-      }
+    .value {
+      color: $bronzeText;
+    }
+
+    .stars {
+      color: $bronzeBg;
     }
 
     border-color: $bronzeBg;
   }
 
   &.silver {
-    span {
-      color: $silverText;
+    background-color: $silverBg;
 
-      &.value {
-        background-color: $silverBg;
-      }
+    .value {
+      color: $silverText;
+    }
+
+    .stars {
+      color: $silverBg;
     }
 
     border-color: $silverBg;
   }
 
   &.gold {
-    span {
-      color: $goldText;
+    background-color: $goldBg;
 
-      &.value {
-        background-color: $goldBg;
-      }
+    .value {
+      color: $goldText;
+    }
+
+    .stars {
+      color: $goldBg;
     }
 
     border-color: $goldBg;
   }
 
   span {
-    padding: 0 2px;
-    font-weight: 500;
+    display: inline-block;
+    height: 100%;
+    padding: 0 3px;
+    vertical-align: top;
 
     &:empty {
       padding: 0;
     }
+  }
 
-    &.stars {
-      background-color: white;
-      border-radius: 1.2px;
+  .stars {
+    display: inline-block;
+    height: 100%;
+    background-color: white;
+
+    span {
+      line-height: 1.3;
     }
   }
 }

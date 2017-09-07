@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import LevelDisplay from '../LevelDisplay';
+import RatingDisplay from '../RatingDisplay';
 import styles from './styles.scss';
 
 class Card extends React.Component {
@@ -17,27 +18,24 @@ class Card extends React.Component {
 
   componentDidMount() {
     axios.get(`/api/v1/heroes/${this.props.data.sr !== -1 ? this.props.data.mainComp_id : this.props.data.mainQP_id}`)
-      .then(res => res.data)
-      .then(hero => this.setState({ mainCompImg: hero.img }))
+      .then((res) => res.data)
+      .then((hero) => this.setState({ mainCompImg: hero.img }))
       .catch(console.error);
   }
 
-  getSRStyle() {
-    const { sr } = this.props.data;
-    if (sr >= 4000) {
-      return styles.grandMaster;
-    } else if (sr >= 3500) {
-      return styles.master;
-    } else if (sr >= 3000) {
-      return styles.diamond;
-    } else if (sr >= 2500) {
-      return styles.platinum;
-    } else if (sr >= 2000) {
-      return styles.gold;
-    } else if (sr >= 1500) {
-      return styles.silver;
-    }
-    return styles.bronze;
+  renderUserInfo() {
+    const { playerIcon, battleTag, data } = this.props;
+
+    return (
+      <div className={styles.bottomPanel}>
+        <img className={styles.playerIcon} src={playerIcon} alt="" />
+        <span className={styles.battleTag}>{battleTag}</span>
+        <div className={styles.tags}>
+          <LevelDisplay level={data.level} />
+          <RatingDisplay rating={data.sr} />
+        </div>
+      </div>
+    );
   }
 
   render() {
@@ -46,18 +44,7 @@ class Card extends React.Component {
         <Link to={`/player/${this.props.playerId}`} className={styles.link}>
           <div className={styles.mask} />
           <img className={styles.hero} src={this.state.mainCompImg} alt="" />
-          <div className={styles.bottomPanel}>
-            <img className={styles.playerIcon} src={this.props.playerIcon} alt="" />
-            <span className={styles.battleTag}>{this.props.battleTag}</span>
-            <div className={styles.tags}>
-              <LevelDisplay level={this.props.data.level} />
-              {
-                this.props.data.sr !== -1 ? (
-                  <span className={[styles.seasonRating, this.getSRStyle()].join(' ')}>{this.props.data.sr}</span>
-                ) : null
-              }
-            </div>
-          </div>
+          {this.renderUserInfo()}
         </Link>
       </div>
     );
