@@ -36,7 +36,7 @@ class PlayerDetail extends Component {
     if (this.state.player !== null) {
       const { id, battle_tag, player_icon, datas } = this.state.player;
       const chartData = datas
-        .map(data => Object.assign(data, {
+        .map((data) => Object.assign({}, data, {
           created_at: formatDate(data.created_at),
           sr: data.sr !== -1 ? data.sr : null,
         }))
