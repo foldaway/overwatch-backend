@@ -23,12 +23,12 @@ class PlayerDetail extends Component {
   componentDidMount() {
     const { playerId } = this.props.match.params;
     axios.get(`/api/v1/players/${playerId}`)
-      .then(res => res.data)
-      .then(player => axios.get(`/api/v1/players/${player.id}/data`)
-        .then(res => res.data)
-        .then(datas => Object.assign(player, { datas })),
+      .then((res) => res.data)
+      .then((player) => axios.get(`/api/v1/players/${player.id}/data`)
+        .then((res) => res.data)
+        .then((datas) => Object.assign(player, { datas })),
       )
-      .then(player => this.setState({ player }))
+      .then((player) => this.setState({ player }))
       .catch(console.error);
   }
 
@@ -42,7 +42,7 @@ class PlayerDetail extends Component {
         }))
         .reverse();
       const hasSR = datas
-        .map(data => data.sr)
+        .map((data) => data.sr)
         .reduce(sum) / datas.length !== -1;
       return (
         <div className={styles.container}>
