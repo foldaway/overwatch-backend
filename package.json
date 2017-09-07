@@ -48,6 +48,10 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "5.1.1",
     "eslint-plugin-react": "^7.2.0",
+    "stylelint": "^8.1.1",
+    "stylelint-config-recess-order": "^1.2.2",
+    "stylelint-config-standard": "^17.0.0",
+    "stylelint-scss": "^2.1.0",
     "webpack-dev-server": "^2.7.1"
   }
 }

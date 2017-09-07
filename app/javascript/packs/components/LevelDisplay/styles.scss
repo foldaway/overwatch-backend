@@ -1,27 +1,28 @@
-$bronzeBg: #A25232;
-$bronzeText: white;
-$silverBg: #D3DCDE;
-$silverText: #8B8E95;
-$goldBg: #C5918A;
-$goldText: #4A4F4D;
+$bronzeBg: #a25232;
+$bronzeText: #fff;
+$silverBg: #d3dcde;
+$silverText: #8b8e95;
+$goldBg: #c5918a;
+$goldText: #4a4f4d;
 
 .container {
   display: inline-block;
-  border: 2px solid;
-  border-radius: 1.2px;
   font-family: 'SF Mono', 'Menlo', 'Monaco', Courier New, Courier, monospace;
   font-size: 0.9em;
+  border: 2px solid;
+  border-radius: 1.2px;
 
   &.bronze {
     span {
-      background-color: white;
       color: $bronzeBg;
-      
+      background-color: white;
+
       &.value {
         color: white;
         background-color: $bronzeBg;
       }
     }
+
     border-color: $bronzeBg;
   }
 
@@ -50,16 +51,16 @@ $goldText: #4A4F4D;
   }
 
   span {
-    font-weight: 500;
     padding: 0 2px;
+    font-weight: 500;
 
     &:empty {
       padding: 0;
     }
 
     &.stars {
-      border-radius: 1.2px;
       background-color: white;
+      border-radius: 1.2px;
     }
   }
 }

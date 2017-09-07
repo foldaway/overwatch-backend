@@ -1,14 +1,14 @@
 .cardlist {
-  margin: 0 auto 2em;
-  max-width: 1250px;
   width: 90%;
+  max-width: 1250px;
+  margin: 0 auto 2em;
 }
 
 .card-area {
   display: grid;
+  justify-content: center;
   grid-gap: 15px;
   grid-template-columns: 230px;
-  justify-content: center;
 
   @media (min-width: 500px) {
     grid-template-columns: repeat(2, 230px);
