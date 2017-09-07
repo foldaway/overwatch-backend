@@ -5,7 +5,7 @@ import styles from './styles.scss';
 const Header = () => (
   <div className={styles.header}>
     <Link to="/" style={{ textDecoration: 'none' }} className={styles.link}>
-      <span>Overwatch</span>
+      <h1>Overwatch</h1>
       <hr />
     </Link>
 

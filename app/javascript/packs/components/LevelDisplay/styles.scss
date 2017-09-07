@@ -1,65 +1,80 @@
-$bronzeBg: #A25232;
-$bronzeText: white;
-$silverBg: #D3DCDE;
-$silverText: #8B8E95;
-$goldBg: #C5918A;
-$goldText: #4A4F4D;
+$bronzeBg: #a25232;
+$bronzeText: #fff;
+$silverBg: #d3dcde;
+$silverText: #8b8e95;
+$goldBg: #c5918a;
+$goldText: #4a4f4d;
 
 .container {
   display: inline-block;
-  border: 2px solid;
-  border-radius: 1.2px;
+  height: 22px;
+  overflow: hidden;
   font-family: 'SF Mono', 'Menlo', 'Monaco', Courier New, Courier, monospace;
   font-size: 0.9em;
+  vertical-align: top;
+  border: 1.7px solid;
+  border-radius: 3px;
 
   &.bronze {
-    span {
-      background-color: white;
-      color: $bronzeBg;
-      
-      &.value {
-        color: white;
-        background-color: $bronzeBg;
-      }
+    background-color: $bronzeBg;
+
+    .value {
+      color: $bronzeText;
     }
+
+    .stars {
+      color: $bronzeBg;
+    }
+
     border-color: $bronzeBg;
   }
 
   &.silver {
-    span {
-      color: $silverText;
+    background-color: $silverBg;
 
-      &.value {
-        background-color: $silverBg;
-      }
+    .value {
+      color: $silverText;
+    }
+
+    .stars {
+      color: $silverBg;
     }
 
     border-color: $silverBg;
   }
 
   &.gold {
-    span {
-      color: $goldText;
+    background-color: $goldBg;
 
-      &.value {
-        background-color: $goldBg;
-      }
+    .value {
+      color: $goldText;
+    }
+
+    .stars {
+      color: $goldBg;
     }
 
     border-color: $goldBg;
   }
 
   span {
-    font-weight: 500;
-    padding: 0 2px;
+    display: inline-block;
+    height: 100%;
+    padding: 0 3px;
+    vertical-align: top;
 
     &:empty {
       padding: 0;
     }
+  }
 
-    &.stars {
-      border-radius: 1.2px;
-      background-color: white;
+  .stars {
+    display: inline-block;
+    height: 100%;
+    background-color: white;
+
+    span {
+      line-height: 1.3;
     }
   }
 }
