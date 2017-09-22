@@ -26,4 +26,4 @@ RUN buildDeps=" \
   && apt-get purge -y --auto-remove $buildDeps nodejs yarn \
   && rm -rf /var/lib/apt
 
-CMD ["bundle", "exec", "rails", "server", "-p", "$PORT"]
+CMD ["bundle", "exec", "rails", "server", "-p", "5000"]
