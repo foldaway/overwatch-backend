@@ -1,5 +1,5 @@
 # Overwatch Dashboard
-[![Build Status](https://travis-ci.org/bottleneckco/overwatch-dashboard.svg?branch=master)](https://travis-ci.org/bottleneckco/overwatch-dashboard) [![Known Vulnerabilities](https://snyk.io/test/github/bottleneckco/overwatch-dashboard/badge.svg)](https://snyk.io/test/github/bottleneckco/overwatch-dashboard)
+[![Build Status](https://travis-ci.org/bottleneckco/overwatch-dashboard.svg?branch=master)](https://travis-ci.org/bottleneckco/overwatch-dashboard) [![Known Vulnerabilities](https://snyk.io/test/github/bottleneckco/overwatch-dashboard/badge.svg)](https://snyk.io/test/github/bottleneckco/overwatch-dashboard) [![Code Climate](https://codeclimate.com/github/bottleneckco/overwatch-dashboard/badges/gpa.svg)](https://codeclimate.com/github/bottleneckco/overwatch-dashboard) [![Test Coverage](https://codeclimate.com/github/bottleneckco/overwatch-dashboard/badges/coverage.svg)](https://codeclimate.com/github/bottleneckco/overwatch-dashboard/coverage) [![Issue Count](https://codeclimate.com/github/bottleneckco/overwatch-dashboard/badges/issue_count.svg)](https://codeclimate.com/github/bottleneckco/overwatch-dashboard)
 
 Web app that displays competitive statistics for a selection of Overwatch players.
 
