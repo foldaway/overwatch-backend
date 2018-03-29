@@ -3,11 +3,11 @@ jobs:
   build:
     docker:
         - image: circleci/ruby-2.5:node
-      steps:
-        - checkout
-        - bundle
-        - bundle exec rspec
-        - yarn install
+    steps:
+      - checkout
+      - bundle
+      - bundle exec rspec
+      - yarn install
   deploy:
     machine:
       enabled: true
