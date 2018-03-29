@@ -8,9 +8,9 @@ jobs:
           PGHOST: 127.0.0.1
           DATABASE_USER: root
       - image: circleci/postgres:10-alpine-ram
-          environment:
-            POSTGRES_USER: root
-            POSTGRES_DB: owdashboard_test
+        environment:
+          POSTGRES_USER: root
+          POSTGRES_DB: owdashboard_test
     steps:
       - checkout
       - run: bundle
