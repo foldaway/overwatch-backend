@@ -2,16 +2,15 @@ version: 2
 jobs:
   build:
     docker:
-        - image: circleci/ruby:2.5-node-browsers
+      - image: circleci/ruby:2.5-node-browsers
+        environment:
+          RAILS_ENV: test
+          PGHOST: 127.0.0.1
+          DATABASE_USER: root
+      - image: circleci/postgres:10-alpine-ram
           environment:
-            RAILS_ENV: test
-            PGHOST: 127.0.0.1
-            DATABASE_USER: root
-        - image: circleci/postgres:10-alpine-ram
-            environment:
-              POSTGRES_USER: root
-              POSTGRES_DB: owdashboard_test
-            
+            POSTGRES_USER: root
+            POSTGRES_DB: owdashboard_test
     steps:
       - checkout
       - run: bundle
