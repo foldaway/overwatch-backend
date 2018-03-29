@@ -5,9 +5,15 @@ jobs:
         - image: circleci/ruby-2.5:node
     steps:
       - checkout
-      - bundle
-      - bundle exec rspec
-      - yarn install
+      - get_ruby_deps:
+          name: Ruby deps
+          command: bundle install
+      - test:
+          name: run_tests
+          command: bundle exec rspec
+      - get_nodejs_deps:
+          name: Get Node.js deps
+          command: yarn install
   deploy:
     machine:
       enabled: true
