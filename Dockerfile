@@ -7,7 +7,8 @@ RUN buildDeps=" \
   build-essential \
   curl \
   zlib1g-dev \
-  ruby-dev"; \
+  ruby-dev \
+  python-dev"; \
   apt-get update \
   && apt-get install -y $buildDeps sudo \
   && curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash - \
