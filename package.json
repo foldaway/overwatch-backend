@@ -1,9 +1,6 @@
 {
   "name": "overwatch-dashboard",
   "private": true,
-  "engines": {
-    "node": "~9"
-  },
   "dependencies": {
     "autoprefixer": "^7.1.2",
     "axios": "^0.16.2",
