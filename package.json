@@ -2,7 +2,7 @@
   "name": "overwatch-dashboard",
   "private": true,
   "engines": {
-    "node": "~8"
+    "node": "~9"
   },
   "dependencies": {
     "autoprefixer": "^7.1.2",

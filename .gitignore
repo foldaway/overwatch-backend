@@ -47,5 +47,5 @@ bower.json
 .byebug_history
 
 # End of https://www.gitignore.io/api/rails
-/public/packs
+/public
 /node_modules
