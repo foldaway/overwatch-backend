@@ -49,6 +49,6 @@
     "stylelint-config-recess-order": "^1.2.2",
     "stylelint-config-standard": "^17.0.0",
     "stylelint-scss": "^2.1.0",
-    "webpack-dev-server": "^2.7.1"
+    "webpack-dev-server": "^2.11.1"
   }
 }
