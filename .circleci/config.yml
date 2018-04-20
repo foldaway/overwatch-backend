@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.5-node-browsers
+      - image: circleci/ruby:2.5
         environment:
           RAILS_ENV: test
           PGHOST: 127.0.0.1
@@ -15,22 +15,3 @@ jobs:
       - checkout
       - run: bundle
       - run: bundle exec rspec
-      - run: yarn install
-  deploy:
-    machine:
-      enabled: true
-    steps:
-      - checkout
-      - run:
-          command: bash .circleci/deploy.sh
-workflows:
-  version: 2
-  build-and-deploy:
-    jobs:
-      - build
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only: master
