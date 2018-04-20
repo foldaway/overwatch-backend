@@ -1,4 +1,4 @@
-class Api::V1::PlayerDatasController < Api::V1::BaseController
+class Api::V1::PlayerDatasController < ApplicationController
   def index
     render :json => PlayerData.all
   end

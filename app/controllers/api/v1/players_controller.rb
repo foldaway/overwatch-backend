@@ -1,4 +1,4 @@
-class Api::V1::PlayersController < Api::V1::BaseController
+class Api::V1::PlayersController < ApplicationController
   def index
     render :json => Player.all.order('LOWER(battle_tag) ASC')
   end
