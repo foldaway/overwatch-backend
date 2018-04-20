@@ -55,3 +55,6 @@ end
 
 # Added at 2018-04-20 20:39:23 +0800 by duncanleo:
 gem "httparty", "~> 0.16.2"
+
+# Added at 2018-04-20 21:15:55 +0800 by duncanleo:
+gem "pg", "~> 1.0"
