@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :player do
     battle_tag { Faker::Lorem.word }
     player_icon { "https://example.com/player_icon.jpg" }

@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :player_data do
     association :player, factory: :player
     association :mainQP, factory: :hero

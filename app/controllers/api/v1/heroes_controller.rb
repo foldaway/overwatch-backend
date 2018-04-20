@@ -1,4 +1,4 @@
-class Api::V1::HeroesController < Api::V1::BaseController
+class Api::V1::HeroesController < ApplicationController
   def index
     render :json => Hero.all
   end

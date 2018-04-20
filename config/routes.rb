@@ -9,8 +9,4 @@ Rails.application.routes.draw do
       resources :player_datas, only: [:index]
     end
   end
-
-  if Rails.env.development?
-    match "*path", to: "home#index", via: :all
-  end
 end

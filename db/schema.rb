@@ -10,10 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170809033215) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 2017_08_09_033215) do
 
   create_table "heroes", force: :cascade do |t|
     t.string "name", null: false
@@ -25,9 +22,9 @@ ActiveRecord::Schema.define(version: 20170809033215) do
   create_table "player_data", force: :cascade do |t|
     t.integer "level", null: false
     t.integer "sr", null: false
-    t.bigint "player_id"
-    t.bigint "mainQP_id"
-    t.bigint "mainComp_id"
+    t.integer "player_id"
+    t.integer "mainQP_id"
+    t.integer "mainComp_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["mainComp_id"], name: "index_player_data_on_mainComp_id"
@@ -44,7 +41,4 @@ ActiveRecord::Schema.define(version: 20170809033215) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "player_data", "heroes", column: "mainComp_id"
-  add_foreign_key "player_data", "heroes", column: "mainQP_id"
-  add_foreign_key "player_data", "players"
 end
