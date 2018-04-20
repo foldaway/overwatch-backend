@@ -54,3 +54,6 @@ group :test do
   gem 'faker'
   gem 'database_cleaner'
 end
+
+# Added at 2018-04-20 20:39:23 +0800 by duncanleo:
+gem "httparty", "~> 0.16.2"
