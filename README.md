@@ -5,7 +5,6 @@ Web server that provides competitive statistics for a selection of Overwatch pla
 
 ## Dependencies
 - `$ bundle install`
-- `$ yarn`
 
 ## Development
 ### Database setup
