@@ -1,9 +1,0 @@
-{
-  "name": "overwatch-dashboard",
-  "description": "Dashboard showing Overwatch stats",
-  "scripts": {
-    "dokku": {
-      "postdeploy": "bundle exec rails db:migrate"
-    }
-  }
-}
