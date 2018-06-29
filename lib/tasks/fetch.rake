@@ -2,20 +2,47 @@ desc "This task fetches data from the unofficial Overwatch API."
 
 require 'i18n'
 
+HEROES = [
+  'Genji',
+  'Bastion',
+  'Doomfist',
+  'Hanzo',
+  'Junkrat',
+  'McCree',
+  'Mei',
+  'Pharah',
+  'Reaper',
+  'Soldier: 76',
+  'Sombra',
+  'Symmetra',
+  'Torbjorn',
+  'Tracer',
+  'Widowmaker',
+  'D.Va',
+  'Orisa',
+  'Reinhardt',
+  'Roadhog',
+  'Winston',
+  'Wrecking Ball',
+  'Zarya',
+  'Ana',
+  'Brigitte',
+  'Lucio',
+  'Mercy',
+  'Moira',
+  'Zenyatta'
+]
+
 class NodeOWAPI
   include HTTParty
-  base_uri  'ow-api.herokuapp.com'
+  base_uri  'ow-api.com/v1'
 
   def initialize(player)
     @player = player
   end
 
-  def profile
-    self.class.get("/profile/#{@player.platform}/#{@player.region}/#{@player.battle_tag}")
-  end
-
   def stats
-    self.class.get("/stats/#{@player.platform}/#{@player.region}/#{@player.battle_tag}")
+    self.class.get("/stats/#{@player.platform}/#{@player.region}/#{@player.battle_tag}/profile")
   end
 end
 
@@ -40,15 +67,14 @@ task :fetch_data => :environment do
     puts "Processing '#{player.battle_tag}'"
 
     ow_api = NodeOWAPI.new(player)
-    profile = ow_api.profile
-    stats = ow_api.stats['stats']
-    
-    player.player_icon = profile['portrait']
+    stats = ow_api.stats
+
+    player.player_icon = stats['icon']
     player.save!
 
     puts "Updated player icon"
 
-    main_qp_hero_name = stats['top_heroes']['quickplay'].first['hero']
+    main_qp_hero_name = HEROES.sample
 
     main_qp_hero = Hero
       .where(name: main_qp_hero_name)
@@ -58,9 +84,9 @@ task :fetch_data => :environment do
       )
     main_qp_hero.update(img: get_hero_image(main_qp_hero_name))
 
-    main_comp_hero_name = stats['top_heroes']['competitive'].any? ? stats['top_heroes']['competitive'].first['hero'] : ''
+    main_comp_hero_name = !stats['rating'].empty? ? HEROES.sample : ''
 
-    main_comp_hero = stats['top_heroes']['competitive'].any? ?
+    main_comp_hero = !stats['rating'].empty? ?
     Hero.where(name: main_comp_hero_name,)
       .first_or_create(
       name: main_comp_hero_name,
@@ -71,8 +97,8 @@ task :fetch_data => :environment do
     puts "Updated main-ed heroes"
 
     PlayerData.create(
-      level: profile['level'].to_i,
-      sr: to_integer(profile['competitive']['rank']),
+      level: stats['prestige'].to_i * 100 + stats['level'].to_i,
+      sr: to_integer(stats['rating']),
       player: player,
       mainQP: main_qp_hero,
       mainComp: main_comp_hero
