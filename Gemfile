@@ -58,3 +58,7 @@ gem "httparty", "~> 0.16.2"
 
 # Added at 2018-04-20 21:15:55 +0800 by duncanleo:
 gem "pg", "~> 1.0"
+
+gem "nokogiri", "~> 1.8"
+
+gem "pry", "~> 0.11.3", :group => [:development]
