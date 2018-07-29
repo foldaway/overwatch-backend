@@ -59,8 +59,6 @@ task :fetch_data => :environment do
     player.player_icon = player_scraper.player_icon
     player.save!
 
-    puts "Updated player icon"
-
     main_qp_hero_name = player_scraper.main_qp rescue HEROES.sample
 
     main_qp_hero = Hero
@@ -83,8 +81,6 @@ task :fetch_data => :environment do
       main_comp_hero&.update(img: get_hero_image(main_comp_hero_name))
     end
 
-    puts "Updated main-ed heroes"
-
     PlayerData.create(
       level: player_scraper.player_level,
       sr: player_scraper.sr,
@@ -93,6 +89,7 @@ task :fetch_data => :environment do
       mainComp: main_comp_hero
     )
 
-    puts "Added new player data"
+    puts "Processing complete"
+    sleep 1
   end
 end
