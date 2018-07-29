@@ -61,25 +61,27 @@ task :fetch_data => :environment do
 
     puts "Updated player icon"
 
-    main_qp_hero_name = HEROES.sample
+    main_qp_hero_name = player_scraper.main_qp rescue HEROES.sample
 
     main_qp_hero = Hero
-      .where(name: main_qp_hero_name)
+      .where('lower(name) = ?', main_qp_hero_name.downcase)
       .first_or_create(
         name: main_qp_hero_name,
         img: get_hero_image(main_qp_hero_name)
       )
     main_qp_hero.update(img: get_hero_image(main_qp_hero_name))
 
-    main_comp_hero_name = !stats['rating'].empty? ? HEROES.sample : ''
+    if player_scraper.sr != -1
+      main_comp_hero_name = player_scraper.main_comp rescue HEROES.sample
 
-    main_comp_hero = !stats['rating'].empty? ?
-    Hero.where(name: main_comp_hero_name,)
-      .first_or_create(
-      name: main_comp_hero_name,
-      img: get_hero_image(main_comp_hero_name)
-    ) : nil
-    main_comp_hero&.update(img: get_hero_image(main_comp_hero_name))
+      main_comp_hero = Hero
+        .where('lower(name) = ?', main_comp_hero_name.downcase)
+        .first_or_create(
+          name: main_comp_hero_name,
+          img: get_hero_image(main_comp_hero_name)
+        )
+      main_comp_hero&.update(img: get_hero_image(main_comp_hero_name))
+    end
 
     puts "Updated main-ed heroes"
 

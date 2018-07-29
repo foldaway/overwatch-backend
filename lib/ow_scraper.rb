@@ -24,12 +24,28 @@ class OWScraper
   end
 
   def sr
-    content = @player_page.css('.competitive-rank > .h5').first.content
+    comp_div = @player_page.css('.competitive-rank > .h5')
+    return -1 if comp_div.empty?
+    content = comp_div.first.content
     content.to_i if Integer(content) rescue -1
+  end
+
+  def main_qp
+    hero_img = hidden_mains_style.content.scan(/\.quickplay {.+?url\((.+?)\);/mis).flatten.first
+    hero_img.scan(/\/hero\/(.+?)\/career/i).flatten.first
+  end
+
+  def main_comp
+    hero_img = hidden_mains_style.content.scan(/\.competitive {.+?url\((.+?)\);/mis).flatten.first
+    hero_img.scan(/\/hero\/(.+?)\/career/i).flatten.first
   end
 
   private
   def rank_map
     JSON.parse File.read(File.expand_path('./ranks.json', __dir__))
+  end
+
+  def hidden_mains_style
+    @player_page.css('style').first
   end
 end
