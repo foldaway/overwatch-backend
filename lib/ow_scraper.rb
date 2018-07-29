@@ -12,9 +12,12 @@ class OWScraper
   def player_level
     quotient = 0
     remainder = @player_page.css('.player-level .u-vertical-center').first.content.to_i
-    level_stars_image_url_code = @player_page.css('.player-rank').first['style'].scan(/0x0250000000000(.+?)_Rank.png/i).flatten
-    if level_stars_image_url_code.any?
-      quotient = 100 * rank_map[level_stars_image_url_code.first]
+    player_rank_div = @player_page.css('.player-rank')
+    if player_rank_div.any?
+      level_stars_image_url_code = player_rank_div.first['style'].scan(/0x0250000000000(.+?)_Rank.png/i).flatten
+      if level_stars_image_url_code.any?
+        quotient = 100 * rank_map[level_stars_image_url_code.first]
+      end
     end
     return quotient + remainder
   end
