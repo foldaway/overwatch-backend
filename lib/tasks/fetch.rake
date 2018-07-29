@@ -1,6 +1,7 @@
 desc "This task fetches data from the unofficial Overwatch API."
 
 require 'i18n'
+require_relative '../ow_scraper'
 
 HEROES = [
   'Genji',
@@ -33,19 +34,6 @@ HEROES = [
   'Zenyatta'
 ]
 
-class NodeOWAPI
-  include HTTParty
-  base_uri  'ow-api.com/v1'
-
-  def initialize(player)
-    @player = player
-  end
-
-  def stats
-    self.class.get("/stats/#{@player.platform}/#{@player.region}/#{@player.battle_tag}/profile")
-  end
-end
-
 def to_integer(str)
   str.to_i if Integer(str) rescue -1
 end
@@ -66,10 +54,9 @@ task :fetch_data => :environment do
   Player.all.each do |player|
     puts "Processing '#{player.battle_tag}'"
 
-    ow_api = NodeOWAPI.new(player)
-    stats = ow_api.stats
+    player_scraper = OWScraper.new(player.battle_tag)
 
-    player.player_icon = stats['icon']
+    player.player_icon = player_scraper.player_icon
     player.save!
 
     puts "Updated player icon"
@@ -97,8 +84,8 @@ task :fetch_data => :environment do
     puts "Updated main-ed heroes"
 
     PlayerData.create(
-      level: stats['prestige'].to_i * 100 + stats['level'].to_i,
-      sr: to_integer(stats['rating']),
+      level: player_scraper.player_level,
+      sr: player_scraper.sr,
       player: player,
       mainQP: main_qp_hero,
       mainComp: main_comp_hero
