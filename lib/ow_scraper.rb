@@ -6,7 +6,7 @@ CHROME_USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.3
 
 class OWScraper
   def initialize(battle_tag)
-    @player_page = Nokogiri::HTML(open("https://playoverwatch.com/en-us/career/pc/#{battle_tag}", "User-Agent" => CHROME_USER_AGENT))
+    @player_page = Nokogiri::HTML(open("https://playoverwatch.com/en-us/career/pc/#{battle_tag.gsub(/#/, '-')}", "User-Agent" => CHROME_USER_AGENT))
   end
 
   def player_icon

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       get 'players/:id/data', to: 'player_datas#show_by_player_id'
       resources :heroes, only: [:index, :show]
       resources :player_datas, only: [:index]
+      resources :scraper, only: [:index]
     end
   end
 end
