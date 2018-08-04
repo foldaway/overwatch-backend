@@ -84,6 +84,7 @@ task :fetch_data => :environment do
     PlayerData.create(
       level: player_scraper.player_level,
       sr: player_scraper.sr,
+      endorsement_level: player_scraper.endorsement_level,
       player: player,
       mainQP: main_qp_hero,
       mainComp: main_comp_hero
