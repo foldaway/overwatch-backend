@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2017_08_09_033215) do
+ActiveRecord::Schema.define(version: 2018_08_04_102402) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "heroes", force: :cascade do |t|
     t.string "name", null: false
@@ -27,6 +30,7 @@ ActiveRecord::Schema.define(version: 2017_08_09_033215) do
     t.integer "mainComp_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "endorsement_level"
     t.index ["mainComp_id"], name: "index_player_data_on_mainComp_id"
     t.index ["mainQP_id"], name: "index_player_data_on_mainQP_id"
     t.index ["player_id"], name: "index_player_data_on_player_id"
