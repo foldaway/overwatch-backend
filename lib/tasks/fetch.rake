@@ -1,7 +1,7 @@
 desc "This task fetches data from the unofficial Overwatch API."
 
 require 'i18n'
-require_relative '../ow_scraper'
+require 'playoverwatch/scraper'
 
 HEROES = [
   'Genji',
@@ -54,7 +54,7 @@ task :fetch_data => :environment do
   Player.all.each do |player|
     puts "Processing '#{player.battle_tag}'"
 
-    player_scraper = OWScraper.new(player.battle_tag)
+    player_scraper = PlayOverwatch::Scraper.new(player.battle_tag)
 
     player.player_icon = player_scraper.player_icon
     player.save!

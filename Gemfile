@@ -62,3 +62,5 @@ gem "pg", "~> 1.0"
 gem "nokogiri", "~> 1.8"
 
 gem "pry", "~> 0.11.3", :group => [:development]
+
+gem "playoverwatch-scraper", "~> 0.1.1"
