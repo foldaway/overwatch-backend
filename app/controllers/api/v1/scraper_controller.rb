@@ -1,10 +1,10 @@
-require_relative '../../../../lib/ow_scraper'
+require 'playoverwatch-scraper'
 
 class Api::V1::ScraperController < ApplicationController
   def index
     battle_tag = params[:battle_tag]
 
-    scraper = OWScraper.new(battle_tag)
+    scraper = PlayOverwatch::Scraper.new(battle_tag)
 
     render :json => {
       :player_icon => scraper.player_icon,
