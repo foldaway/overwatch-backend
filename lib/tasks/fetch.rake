@@ -1,7 +1,7 @@
 desc "This task fetches data from the unofficial Overwatch API."
 
 require 'i18n'
-require 'playoverwatch/scraper'
+require 'playoverwatch-scraper'
 
 HEROES = [
   'Genji',
