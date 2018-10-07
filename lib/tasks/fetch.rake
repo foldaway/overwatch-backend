@@ -91,6 +91,6 @@ task :fetch_data => :environment do
     )
 
     puts "Processing complete"
-    sleep 1
+    sleep 3
   end
 end
