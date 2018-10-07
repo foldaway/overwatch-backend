@@ -54,43 +54,47 @@ task :fetch_data => :environment do
   Player.all.each do |player|
     puts "Processing '#{player.battle_tag}'"
 
-    player_scraper = PlayOverwatch::Scraper.new(player.battle_tag)
+    begin  
+      player_scraper = PlayOverwatch::Scraper.new(player.battle_tag)
 
-    player.player_icon = player_scraper.player_icon
-    player.save!
+      player.player_icon = player_scraper.player_icon
+      player.save!
 
-    main_qp_hero_name = player_scraper.main_qp rescue HEROES.sample
+      main_qp_hero_name = player_scraper.main_qp rescue HEROES.sample
 
-    main_qp_hero = Hero
-      .where('lower(name) = ?', main_qp_hero_name.downcase)
-      .first_or_create(
-        name: main_qp_hero_name,
-        img: get_hero_image(main_qp_hero_name)
-      )
-    main_qp_hero.update(img: get_hero_image(main_qp_hero_name))
-
-    if player_scraper.sr != -1
-      main_comp_hero_name = player_scraper.main_comp rescue HEROES.sample
-
-      main_comp_hero = Hero
-        .where('lower(name) = ?', main_comp_hero_name.downcase)
+      main_qp_hero = Hero
+        .where('lower(name) = ?', main_qp_hero_name.downcase)
         .first_or_create(
-          name: main_comp_hero_name,
-          img: get_hero_image(main_comp_hero_name)
+          name: main_qp_hero_name,
+          img: get_hero_image(main_qp_hero_name)
         )
-      main_comp_hero&.update(img: get_hero_image(main_comp_hero_name))
+      main_qp_hero.update(img: get_hero_image(main_qp_hero_name))
+
+      if player_scraper.sr != -1
+        main_comp_hero_name = player_scraper.main_comp rescue HEROES.sample
+
+        main_comp_hero = Hero
+          .where('lower(name) = ?', main_comp_hero_name.downcase)
+          .first_or_create(
+            name: main_comp_hero_name,
+            img: get_hero_image(main_comp_hero_name)
+          )
+        main_comp_hero&.update(img: get_hero_image(main_comp_hero_name))
+      end
+
+      PlayerData.create(
+        level: player_scraper.player_level,
+        sr: player_scraper.sr,
+        endorsement_level: player_scraper.endorsement_level,
+        player: player,
+        mainQP: main_qp_hero,
+        mainComp: main_comp_hero
+      )
+
+      puts "Processing complete"
+      sleep 3
+    rescue => exception
+      puts exception
     end
-
-    PlayerData.create(
-      level: player_scraper.player_level,
-      sr: player_scraper.sr,
-      endorsement_level: player_scraper.endorsement_level,
-      player: player,
-      mainQP: main_qp_hero,
-      mainComp: main_comp_hero
-    )
-
-    puts "Processing complete"
-    sleep 3
   end
 end
