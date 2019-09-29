@@ -13,6 +13,7 @@ HEROES = [
   'Mei',
   'Pharah',
   'Reaper',
+  'Sigma',
   'Soldier: 76',
   'Sombra',
   'Symmetra',
@@ -31,7 +32,8 @@ HEROES = [
   'Lucio',
   'Mercy',
   'Moira',
-  'Zenyatta'
+  'Zenyatta',
+  'Ashe'
 ]
 
 def to_integer(str)
