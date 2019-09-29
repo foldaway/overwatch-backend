@@ -13,5 +13,7 @@ jobs:
           POSTGRES_DB: owdashboard_test
     steps:
       - checkout
+      - run: gem update --system
+      - run: gem install bundler
       - run: bundle
       - run: bundle exec rspec
