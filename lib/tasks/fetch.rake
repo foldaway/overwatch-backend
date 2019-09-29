@@ -94,7 +94,7 @@ task :fetch_data => :environment do
       puts "Processing complete"
       sleep 3
     rescue => exception
-      puts exception
+      puts exception.backtrace
     end
   end
 end
