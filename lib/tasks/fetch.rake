@@ -62,7 +62,7 @@ task :fetch_data => :environment do
       player.player_icon = player_scraper.player_icon
       player.save!
 
-      main_qp_hero_name = player_scraper.main_qp rescue HEROES.sample
+      main_qp_hero_name = HEROES.sample
 
       main_qp_hero = Hero
         .where('lower(name) = ?', main_qp_hero_name.downcase)
@@ -73,7 +73,7 @@ task :fetch_data => :environment do
       main_qp_hero.update(img: get_hero_image(main_qp_hero_name))
 
       if player_scraper.sr != -1
-        main_comp_hero_name = player_scraper.main_comp rescue HEROES.sample
+        main_comp_hero_name = HEROES.sample
 
         main_comp_hero = Hero
           .where('lower(name) = ?', main_comp_hero_name.downcase)
