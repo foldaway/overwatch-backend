@@ -60,6 +60,7 @@ task :fetch_data => :environment do
       player_scraper = PlayOverwatch::Scraper.new(player.battle_tag)
 
       player.player_icon = player_scraper.player_icon
+      player.player_icon = '_' if player.player_icon.nil?
       player.save!
 
       main_qp_hero_name = HEROES.sample
@@ -96,6 +97,7 @@ task :fetch_data => :environment do
       puts "Processing complete"
       sleep 3
     rescue => exception
+      puts exception
       puts exception.backtrace
     end
   end
